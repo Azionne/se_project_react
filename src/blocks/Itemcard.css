@@ -1,0 +1,11 @@
+.card {
+  width: 323px;
+  /*border-radius: ;*/
+  /*border: 1px solid #000;*/
+  position: relative;
+}
+
+.card__title {
+  position: absolute;
+  top: 15px;
+}
