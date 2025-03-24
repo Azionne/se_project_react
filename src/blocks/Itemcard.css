@@ -3,9 +3,16 @@
   /*border-radius: ;*/
   /*border: 1px solid #000;*/
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
-.card__title {
+.card__name {
   position: absolute;
   top: 15px;
+  margin: 0;
+}
+
+.card__image {
+  width: 100%;
 }

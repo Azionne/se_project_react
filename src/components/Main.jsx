@@ -1,10 +1,10 @@
 import "../blocks/Main.css";
-import Weathercard from "../components/Weathercard";
+import Weathercard from "./Weathercard";
 import { defaultClothingItems } from "../utils/constants";
-import ItemCard from "../components/ItemCard";
+import ItemCard from "./ItemCard";
 import "../blocks/Itemcard.css"; // Correctly import the CSS file
 
-function Main({ weatherData }) {
+function Main({ weatherData, handleCardClick }) {
   return (
     <main>
       <Weathercard />
@@ -18,7 +18,13 @@ function Main({ weatherData }) {
             // return item.weather === weatherData.type;
             //})
             .map((item) => {
-              return <ItemCard key={item._id} item={item} />;
+              return (
+                <ItemCard
+                  key={item._id}
+                  item={item}
+                  onCardClick={handleCardClick}
+                />
+              );
             })}
         </ul>
       </section>

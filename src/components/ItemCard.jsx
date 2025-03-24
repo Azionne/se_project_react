@@ -1,10 +1,17 @@
-import "../blocks/Itemcard.css"; // Correctly import the CSS file
+import "../blocks/Itemcard.css";
 
-function ItemCard({ item }) {
+function ItemCard({ item, onCardClick }) {
   return (
     <li className="card">
-      <h2>{item.name}</h2>
-      <img className="card__image" src={item.link} alt={item.name} />
+      <h2 className="card__name">{item.name}</h2>
+      <img
+        onClick={() => {
+          onCardClick(item);
+        }}
+        className="card__image"
+        src={item.link}
+        alt={item.name}
+      />
     </li>
   );
 }
