@@ -2,7 +2,7 @@ import "../blocks/Main.css";
 import Weathercard from "./Weathercard";
 import { defaultClothingItems } from "../utils/constants";
 import ItemCard from "./ItemCard";
-import "../blocks/Itemcard.css"; // Correctly import the CSS file
+import "../blocks/Itemcard.css";
 
 function Main({ weatherData, handleCardClick }) {
   return (
@@ -13,11 +13,8 @@ function Main({ weatherData, handleCardClick }) {
           Today is {weatherData.temp.F} &deg; F / You may want to wear:
         </p>
         <ul className="cards__list">
-          {/* Commenting out the filter to show all items */}
           {defaultClothingItems
-            // .filter((item) => {
-            //   return item.weather === weatherData.type;
-            // })
+            .filter((item) => item.weather === weatherData.type)
             .map((item) => {
               return (
                 <ItemCard
