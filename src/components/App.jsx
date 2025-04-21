@@ -58,29 +58,20 @@ function App() {
   };
 
   useEffect(() => {
-    getItems()
+    getWeather(coordinates, APIkey)
       .then((data) => {
-        console.log("Fetched clothing items:", data); // Log the fetched data
-        setClothingItems(data); // Ensure the data is set correctly
+        const filteredData = filterWeatherData(data);
+        setWeatherData(filteredData);
       })
-      .catch((error) => {
-        console.error("Error fetching items:", error); // Log any errors
-      });
+      .catch(console.error);
   }, []);
+
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log("Fetched clothing items:", data); // Log the fetched data
-        if (Array.isArray(data)) {
-          setClothingItems(data); // Ensure the data is an array
-        } else {
-          console.error("Fetched data is not an array:", data);
-          setClothingItems([]); // Fallback to an empty array
-        }
+        setClothingItems(data);
       })
-      .catch((error) => {
-        console.error("Error fetching items:", error); // Log any errors
-      });
+      .catch(console.error);
   }, []);
   return (
     <CurrentTemperatureUnitContext.Provider
