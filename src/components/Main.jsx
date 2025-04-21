@@ -6,7 +6,7 @@ import ItemCard from "./ItemCard";
 import "../blocks/Itemcard.css";
 import CurrentTemperatureUnitContext from "../context/CurrentTemperatureUnitContext";
 
-function Main({ weatherData, onCardClick, clothingItems = [] }) {
+function Main({ weatherData, handleCardClick, clothingItems = [] }) {
   return (
     <main>
       <Weathercard weatherData={weatherData} />
@@ -22,7 +22,7 @@ function Main({ weatherData, onCardClick, clothingItems = [] }) {
                 <ItemCard
                   key={item._id}
                   item={item}
-                  onCardClick={onCardClick}
+                  onCardClick={handleCardClick}
                 />
               );
             })}
