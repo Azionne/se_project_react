@@ -1,0 +1,13 @@
+.sidebar {
+  display: flex;
+}
+
+.sidebar__img {
+  width: 56px;
+  height: 56px;
+}
+
+.sidebar__username {
+  width: 229px;
+  margin-left: 56px;
+}

@@ -1,0 +1,13 @@
+.clothes-section__description {
+  display: flex;
+  gap: 20px;
+}
+
+.clothes-section__label _ {
+  margin: 0;
+}
+
+.clothes-section__btn {
+  border: none;
+  color: #00000099;
+}

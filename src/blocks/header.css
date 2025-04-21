@@ -54,3 +54,8 @@
   margin: 0;
   font-weight: 700;
 }
+
+.header__link {
+  text-decoration: none;
+  color: inherit;
+}
