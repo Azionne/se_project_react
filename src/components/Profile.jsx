@@ -1,7 +1,7 @@
 import ClothesSection from "./ClothesSection";
 import Sidebar from "./Sidebar";
 
-import "../blocks/profile.css";
+import "../blocks/Profile.css";
 
 function Profile({ onCardClick, weatherData }) {
   console.log("Profile component rendered with weatherData:", weatherData);
