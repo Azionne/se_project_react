@@ -1,0 +1,61 @@
+.card {
+  border-radius: 15px;
+  width: 323px;
+  height: 325px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.card__name {
+  position: absolute;
+  top: 15px;
+  margin: 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 1;
+  background-color: #ffffff;
+  width: auto;
+  padding: 4px 12px;
+  height: 24px;
+  gap: 0px;
+  border-radius: 4px;
+  opacity: 0.9;
+}
+
+.cards__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  gap: 21px;
+  max-height: 650px;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.card__image {
+  width: 100%;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 380px) {
+  .card {
+    position: relative;
+    width: 162px;
+    height: 162px;
+    margin-top: 20px;
+  }
+
+  .card__image {
+    width: 162px;
+    height: 162px;
+    object-fit: cover;
+  }
+}
