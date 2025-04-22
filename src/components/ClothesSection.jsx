@@ -1,5 +1,5 @@
 import { defaultClothingItems } from "../utils/constants";
-
+import { Link } from "react-router-dom";
 import ItemCard from "../components/ItemCard";
 
 import "../blocks/ClothesSection.css";

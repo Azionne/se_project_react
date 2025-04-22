@@ -6,7 +6,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <img src={avatar} alt="Default User" className="sidebar__img" />
-      <p className="sidebar__username">Default User's Name</p>
+      <p className="sidebar__username">Terrence Tegegne</p>
     </div>
   );
 }

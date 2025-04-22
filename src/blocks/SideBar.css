@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url(../vendor/fonts/CabinetGrotesk-Regular.woff) format("woff");
+}
+
 .sidebar {
   display: flex;
 }
@@ -9,5 +14,8 @@
 
 .sidebar__username {
   width: 229px;
-  margin-left: 56px;
+  margin-left: 24px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
 }

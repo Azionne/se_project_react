@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url(../vendor/fonts/CabinetGrotesk-Regular.woff) format("woff");
+}
+
+.clothes-section__description {
+  display: flex;
+  gap: 20px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 800;
+}
+
 .clothes-section__items {
   display: grid;
   gap: 200px;
@@ -5,6 +17,14 @@
   margin: 0px;
   padding: 0px;
   list-style: none;
+}
+
+.clothes-section__btn {
+  background-color: transparent;
+  border: none;
+  color: grey;
+  font-weight: 600;
+  margin-left: -10px;
 }
 
 @media screen and (max-width: 380px) {

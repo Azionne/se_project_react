@@ -46,7 +46,7 @@
   cursor: pointer;
 }
 
-.modal__content {
+.modal__content-form {
   font-family: "Cabinet Grotesk";
   position: relative;
   padding: 28px 28px 36px;

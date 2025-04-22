@@ -12,7 +12,7 @@ import Switch from "./Switch";
 import CurrentTemperatureUnitContext from "../context/CurrentTemperatureUnitContext";
 import AddItemModal from "./AddItemModal";
 import { defaultClothingItems } from "../utils/constants";
-import { getItems } from "../utils/api";
+import { getItems, postItems, deleteItems } from "../utils/api";
 
 const APIkey = "a55a98aaee04d0285bcba725026a08a1";
 
@@ -50,7 +50,7 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weatherType }) => {
-    const newId = Math.max(...clothingItems.map((item) => item._id)) + 1; // Generate a new ID
+    const newId = Math.max(...clothingItems.map((item) => item._id)) + 1;
     setClothingItems((prevItems) => {
       [{ name, link: imageUrl, weatherType, _id: newId }, ...prevItems];
     });
@@ -69,9 +69,12 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
+        console.log("Fetched clothing items:", data);
         setClothingItems(data);
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Error fetching items:", error.message);
+      });
   }, []);
   return (
     <CurrentTemperatureUnitContext.Provider
