@@ -3,7 +3,6 @@ import logo from "../assets/logo.svg";
 import avatar from "../assets/avatar.svg";
 import Switch from "./ToggleSwitch";
 import { Link } from "react-router-dom";
-import { default as Switch } from "./ToggleSwitch";
 
 function Header({ handleAddClick, weatherData }) {
   const currentDate = new Date().toLocaleString("default", {
