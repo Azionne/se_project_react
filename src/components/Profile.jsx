@@ -1,5 +1,5 @@
 import ClothesSection from "./ClothesSection";
-import Sidebar from "./Sidebar";
+import Sidebar from "./SideBar";
 
 import "../blocks/Profile.css";
 
