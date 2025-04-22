@@ -135,3 +135,7 @@
   cursor: pointer;
   margin: -57px 0px 0px -5px;
 }
+
+.modal__weather {
+  margin-top: -26px;
+}

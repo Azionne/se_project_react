@@ -58,3 +58,17 @@
 .modal__footer {
   font-family: "Cabinet Grotesk", sans-serif;
 }
+
+.modal__delete {
+  color: red;
+  background-color: transparent;
+  border: none;
+}
+
+.modal__delete-btn {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  bottom: 40px; /* Adjust as needed */
+  right: 16px; /* Adjust as needed */
+}

@@ -1,15 +1,17 @@
 import { defaultClothingItems } from "../utils/constants";
-import { Link } from "react-router-dom";
+
 import ItemCard from "../components/ItemCard";
 
 import "../blocks/ClothesSection.css";
 
-function ClothesSection({ onCardClick }) {
+function ClothesSection({ onCardClick, handleActiveModal }) {
   return (
     <div className="clothes-section">
       <div className="clothes-section__description">
         <p className="clothes-section__label">Your Items</p>
-        <button className="clothes-section__btn">+ Add New</button>
+        <button className="clothes-section__btn" onClick={handleActiveModal}>
+          + Add New
+        </button>
       </div>
       <ul className="cards__list">
         {defaultClothingItems.map((item) => {
