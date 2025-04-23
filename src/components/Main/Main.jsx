@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "../Main/Main.css";
-import Weathercard from "../WeatherCard/WeatherCard";
+import WeatherCard from "../Weathercard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 
@@ -8,7 +8,7 @@ function Main({ weatherData, handleCardClick, clothingItems = [] }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   return (
     <main>
-      <Weathercard weatherData={weatherData} />
+      <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
           Today is{" "}
