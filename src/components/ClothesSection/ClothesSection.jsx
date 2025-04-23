@@ -1,8 +1,8 @@
-import { defaultClothingItems } from "../utils/constants";
+import { defaultClothingItems } from "../../utils/constants";
 
-import ItemCard from "../components/ItemCard";
+import ItemCard from "../ItemCard/ItemCard";
 
-import "../blocks/ClothesSection.css";
+import "./ClothesSection.css";
 
 function ClothesSection({ onCardClick, handleActiveModal }) {
   return (

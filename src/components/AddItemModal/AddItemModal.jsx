@@ -1,6 +1,6 @@
 import React, { useState } from "react"; // Import useState from React
-import "../blocks/AddItemModal.css";
-import ModelWithForm from "./ModalWithForm";
+import "./AddItemModal.css"; // Corrected the relative path for the CSS file
+import ModelWithForm from "../ModalWithForm/ModalWithForm"; // Import ModelWithForm component
 
 export default function AddItemModal({
   onClose,

@@ -1,4 +1,4 @@
-import "../blocks/Footer.css";
+import "./Footer.css";
 
 function Footer({ year }) {
   return (

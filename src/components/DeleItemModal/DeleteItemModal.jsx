@@ -1,6 +1,5 @@
-import ModalWithForm from "./ModalWithForm";
-import "../blocks/DeleteItemModal.css";
-import closeIcon from "../assets/close-light.png";
+import "./DeleteItemModal.css";
+import closeIcon from "../../assets/close-light.png";
 
 function DeleteItemModal({
   activeModal,

@@ -1,5 +1,5 @@
-import "../blocks/ModalWithForm.css";
-import closeIcon from "../assets/close.png";
+import "./ModalWithForm.css";
+import closeIcon from "../../assets/close.png";
 function ModelWithForm({
   children,
   buttonText,

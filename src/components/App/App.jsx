@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import "../blocks/App.css";
-import { coordinates } from "../utils/constants";
-import Header from "./Header";
-import Main from "../components/Main";
-import Footer from "./Footer";
-import Profile from "./Profile";
-import ItemModal from "../components/ItemModal";
-import { getWeather, filterWeatherData } from "../utils/weatherApi";
-import Switch from "./ToggleSwitch";
-import CurrentTemperatureUnitContext from "../context/CurrentTemperatureUnitContext";
-import AddItemModal from "./AddItemModal";
-import { defaultClothingItems } from "../utils/constants";
-import { getItems, postItems, deleteItems } from "../utils/api";
-import DeleteItemModal from "./DeleteItemModal";
+import "./App.css";
+import { coordinates } from "../../utils/constants";
+import Header from "../Header/Header";
+import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
+import Profile from "../Profile/Profile";
+import ItemModal from "../ItemModal/ItemModal";
+import { getWeather, filterWeatherData } from "../../utils/weatherApi";
+import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
+import AddItemModal from "../AddItemModal/AddItemModal";
+import { getItems, deleteItems } from "../../utils/api";
+import DeleteItemModal from "../DeleItemModal/DeleteItemModal";
 
 const APIkey = "a55a98aaee04d0285bcba725026a08a1";
 

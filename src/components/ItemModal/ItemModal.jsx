@@ -1,5 +1,5 @@
-import "../blocks/ItemModal.css";
-import closeIcon from "../assets/close-light.png";
+import "./ItemModal.css";
+import closeIcon from "../../assets/close-light.png";
 
 function ItemModal({ activeModal, onClose, card, onDelete }) {
   if (!card) {
