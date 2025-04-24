@@ -3,7 +3,7 @@ import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext"; // Import context
 
-function Weathercard({ weatherData }) {
+function WeatherCard({ weatherData }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   const filteredOptions = weatherOptions.filter((option) => {
@@ -33,4 +33,4 @@ function Weathercard({ weatherData }) {
   );
 }
 
-export default Weathercard;
+export default WeatherCard;

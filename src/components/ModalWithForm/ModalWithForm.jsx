@@ -1,6 +1,6 @@
 import "./ModalWithForm.css";
 import closeIcon from "../../assets/close.png";
-function ModelWithForm({
+function ModalWithForm({
   children,
   buttonText,
   title,
@@ -27,4 +27,4 @@ function ModelWithForm({
   );
 }
 
-export default ModelWithForm;
+export default ModalWithForm;

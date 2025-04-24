@@ -2,7 +2,7 @@ import React from "react";
 import "../Header/header.css";
 import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.svg";
-import Switch from "../ToggleSwitch/ToggleSwitch";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 
 function Header({ handleAddClick, weatherData }) {
@@ -22,7 +22,7 @@ function Header({ handleAddClick, weatherData }) {
         </p>
       </div>
       <div className="header__right">
-        <Switch />
+        <ToggleSwitch />
         <div className="header__actions">
           <button
             onClick={handleAddClick}
