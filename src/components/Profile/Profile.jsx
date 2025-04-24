@@ -3,7 +3,7 @@ import Sidebar from "../SideBar/Sidebar";
 
 import "../Profile/Profile.css";
 
-function Profile({ onCardClick, weatherData }) {
+function Profile({ onCardClick, weatherData, clothingItems }) {
   console.log("Profile component rendered with weatherData:", weatherData);
   return (
     <div className="profile">
@@ -11,7 +11,11 @@ function Profile({ onCardClick, weatherData }) {
         <Sidebar />
       </section>
       <section className="profile__closet">
-        <ClothesSection onCardClick={onCardClick} weatherData={weatherData} />
+        <ClothesSection
+          onCardClick={onCardClick}
+          weatherData={weatherData}
+          clothingItems={clothingItems}
+        />
       </section>
     </div>
   );

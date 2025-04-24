@@ -4,7 +4,7 @@ import ItemCard from "../ItemCard/ItemCard";
 
 import "./ClothesSection.css";
 
-function ClothesSection({ onCardClick, handleActiveModal }) {
+function ClothesSection({ onCardClick, handleActiveModal, clothingItems }) {
   return (
     <div className="clothes-section">
       <div className="clothes-section__description">
@@ -14,7 +14,7 @@ function ClothesSection({ onCardClick, handleActiveModal }) {
         </button>
       </div>
       <ul className="cards__list">
-        {defaultClothingItems.map((item) => {
+        {clothingItems.map((item) => {
           return (
             <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
           );

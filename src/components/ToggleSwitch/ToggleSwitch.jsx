@@ -33,4 +33,4 @@ export const Switch = () => {
   );
 };
 
-export default Switch;
+export default ToggleSwitch;
