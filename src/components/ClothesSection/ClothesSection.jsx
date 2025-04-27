@@ -14,7 +14,7 @@ function ClothesSection({ onCardClick, handleActiveModal, clothingItems }) {
     <div className="clothes-section">
       <div className="clothes-section__description">
         <p className="clothes-section__label">Your Items</p>
-        <button className="clothes-section__btn" onCardClick={onCardClick}>
+        <button className="clothes-section__btn" onClick={onCardClick}>
           + Add New
         </button>
       </div>
