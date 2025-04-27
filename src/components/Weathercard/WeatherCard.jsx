@@ -1,4 +1,4 @@
-import "./WeatherCard.css"; // Corrected import path for WeatherCard CSS
+import "./Weathercard.css"; // Corrected import path for WeatherCard CSS
 import { weatherOptions, defaultWeatherOptions } from "../../utils/constants";
 import { useContext } from "react";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext"; // Import context
