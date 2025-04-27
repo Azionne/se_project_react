@@ -2,6 +2,7 @@ import "./ItemModal.css";
 import closeIcon from "../../assets/close-light.png";
 
 function ItemModal({ activeModal, onClose, card, onDelete }) {
+  console.log("Card passed to ItemModal:", card);
   if (!card) {
     return null; // Do not render the modal if card is null or undefined
   }
@@ -12,7 +13,13 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
         <button className="modal__close" type="button" onClick={onClose}>
           <img src={closeIcon} alt="Close" />
         </button>
-        <img src={card.imageUrl} alt="Weather wear" className="modal__image" />
+
+        {console.log(card.imageUrl)}
+        <img
+          src={card.imageUrl}
+          alt={card.name || "Weather wear"}
+          className="modal__image"
+        />
         <div className="modal__footer_container">
           <div className="modal__footer">
             <h2 className="modal__caption">{card.name}</h2>

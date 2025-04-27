@@ -56,7 +56,7 @@ function App() {
   const handleAddItemModalSubmit = ({ name, imageUrl, weatherType }) => {
     const newId = Math.max(...clothingItems.map((item) => item._id)) + 1;
     setClothingItems((prevItems) => {
-      return [{ name, link: imageUrl, weatherType, _id: newId }, ...prevItems];
+      return [{ name, imageUrl, weatherType, _id: newId }, ...prevItems];
     });
     closeActiveModal();
   };
@@ -84,6 +84,7 @@ function App() {
     getWeather(coordinates, APIkey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
+        console.log("Filtered weather data:", filteredData);
         setWeatherData(filteredData);
       })
       .catch(console.error);
@@ -125,6 +126,7 @@ function App() {
                   onCardClick={handleCardClick}
                   handleAddClick={handleAddClick}
                   clothingItems={clothingItems}
+                  weatherData={weatherData}
                 />
               }
             />

@@ -17,6 +17,7 @@ export default function AddItemModal({
 
   const handleImageUrlChange = (e) => {
     setImageUrl(e.target.value);
+    console.log("Image URL:", e.target.value);
   };
   const handleWeatherTypeChange = (e) => {
     setWeatherType(e.target.value);

@@ -9,10 +9,16 @@ function getItems() {
     headers: {
       "Content-Type": "application/json",
     },
-  }).then(handleServerResponse);
+  })
+    .then(handleServerResponse)
+    .then((data) => {
+      console.log("API response:", data); // Debug API response
+      return data;
+    });
 }
 
 function postItems({ name, weather, imageUrl }) {
+  console.log("New item added:", newItem);
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
