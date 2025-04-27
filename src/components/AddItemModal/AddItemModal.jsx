@@ -1,15 +1,15 @@
-import React, { useState } from "react"; // Import useState from React
-import "./AddItemModal.css"; // Corrected the relative path for the CSS file
-import ModelWithForm from "../ModalWithForm/ModalWithForm"; // Import ModelWithForm component
+import React, { useState } from "react";
+import "./AddItemModal.css";
+import ModelWithForm from "../ModalWithForm/ModalWithForm";
 
 export default function AddItemModal({
   onClose,
   isOpen,
   onAddItemModalSubmit,
 }) {
-  const [name, setName] = useState(""); // useState is now properly imported
-  const [imageUrl, setImageUrl] = useState(""); // Added state for image URL
-  const [weatherType, setWeatherType] = useState(""); // Added state for weather type
+  const [name, setName] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [weatherType, setWeatherType] = useState("");
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -24,11 +24,24 @@ export default function AddItemModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddItemModalSubmit({ name, imageUrl, weatherType }); // Pass the new item to the parent component
-    setName(""); // Reset name after submission
-    setImageUrl(""); // Reset image URL after submission
-    setWeatherType(""); // Reset weather type after submission
+
+    onAddItemModalSubmit({ name, imageUrl, weatherType })
+      .then(() => {
+        setName("");
+        setWeatherType("");
+        setImageUrl("");
+        onClose(); // Close the modal after successful submission
+      })
+      .catch((err) => {
+        console.error("Error adding item:", err);
+      });
   };
+
+  function resetForm() {
+    setName("");
+    setImageUrl("");
+    setWeatherType("");
+  }
 
   return (
     <ModelWithForm
@@ -36,7 +49,7 @@ export default function AddItemModal({
       buttonText="Add garment"
       isOpen={isOpen}
       onClose={onClose}
-      OnSubmit={handleSubmit}
+      onSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__label">
         Name{" "}

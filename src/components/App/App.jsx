@@ -21,6 +21,8 @@ function App() {
     temp: { F: 999, C: 999 },
     city: "",
   });
+
+  const [cardToDelete, setCardToDelete] = useState(null);
   const [clothingItems, setClothingItems] = useState([]);
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
@@ -54,26 +56,24 @@ function App() {
   const handleAddItemModalSubmit = ({ name, imageUrl, weatherType }) => {
     const newId = Math.max(...clothingItems.map((item) => item._id)) + 1;
     setClothingItems((prevItems) => {
-      [{ name, link: imageUrl, weatherType, _id: newId }, ...prevItems];
+      return [{ name, link: imageUrl, weatherType, _id: newId }, ...prevItems];
     });
     closeActiveModal();
   };
 
-  const handleAddItem = () => {
-    setActiveModal("add-garment");
-  };
-
-  const handleCardDelete = (cardId) => {
+  const handleCardDelete = (card) => {
     setActiveModal("delete");
-    setSelectedCard(cardId);
+    setCardToDelete(card);
   };
 
-  const handleConfirmCardDelete = (cardId) => {
-    deleteItems(cardId)
-      .then(() => {
-        console.log(cardId);
+  const handleConfirmCardDelete = () => {
+    deleteItems(cardToDelete._id)
+      .then((res) => {
+        console.log(res);
         setClothingItems(([item, ...clothingItems]) =>
-          [item, ...clothingItems].filter((item) => item._id !== cardId)
+          [item, ...clothingItems].filter(
+            (item) => item._id !== cardToDelete._id
+          )
         );
         closeActiveModal();
       })
@@ -142,8 +142,9 @@ function App() {
           activeModal={activeModal}
           card={selectedCard}
           onClose={closeActiveModal}
-          onDelete={handleCardDelete} // Pass handleCardDelete as onDelete
+          onDelete={handleCardDelete}
         />
+
         <DeleteItemModal
           activeModal={activeModal}
           onConfirm={handleConfirmCardDelete}
