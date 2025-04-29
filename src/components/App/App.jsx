@@ -54,13 +54,23 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weatherType }) => {
-    const newId = Math.max(...clothingItems.map((item) => item._id)) + 1;
-    setClothingItems((prevItems) => {
-      return [{ name, imageUrl, weatherType, _id: newId }, ...prevItems];
-    });
-    closeActiveModal();
-  };
+    return new Promise((resolve, reject) => {
+      try {
+        const newId =
+          clothingItems.length > 0
+            ? Math.max(...clothingItems.map((item) => item._id)) + 1
+            : 1; // Handle empty array case
 
+        const newItem = { name, imageUrl, weatherType, _id: newId };
+
+        setClothingItems((prevItems) => [newItem, ...prevItems]); // Add the new item
+        closeActiveModal();
+        resolve(newItem); // Resolve the promise
+      } catch (error) {
+        reject(error); // Reject the promise in case of an error
+      }
+    });
+  };
   const handleCardDelete = (card) => {
     setActiveModal("delete");
     setCardToDelete(card);

@@ -31,9 +31,10 @@ export default function AddItemModal({
         setName("");
         setWeatherType("");
         setImageUrl("");
-        onClose(); // Close the modal after successful submission
+        onClose();
       })
       .catch((err) => {
+        console.log("onAddItemModalSubmit prop:", onAddItemModalSubmit); // Debug the prop
         console.error("Error adding item:", err);
       });
   };
