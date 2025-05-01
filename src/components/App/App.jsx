@@ -10,7 +10,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, deleteItems } from "../../utils/api";
+import { getItems, deleteItems, postItems } from "../../utils/api";
 import DeleteItemModal from "../DeleItemModal/DeleteItemModal";
 
 const APIkey = "a55a98aaee04d0285bcba725026a08a1";
@@ -54,22 +54,9 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weatherType }) => {
-    return new Promise((resolve, reject) => {
-      try {
-        const newId =
-          clothingItems.length > 0
-            ? Math.max(...clothingItems.map((item) => item._id)) + 1
-            : 1; // Handle empty array case
-
-        const newItem = { name, imageUrl, weatherType, _id: newId };
-
-        setClothingItems((prevItems) => [newItem, ...prevItems]); // Add the new item
-        closeActiveModal();
-        resolve(newItem); // Resolve the promise
-      } catch (error) {
-        reject(error); // Reject the promise in case of an error
-      }
-    });
+    postItems({ name, imageUrl, weather: weatherType })
+      .then((newItem) => {})
+      .catch((error) => console.error("Error adding item:", error));
   };
   const handleCardDelete = (card) => {
     setActiveModal("delete");

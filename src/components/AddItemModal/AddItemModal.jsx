@@ -36,6 +36,7 @@ export default function AddItemModal({
       .catch((err) => {
         console.log("onAddItemModalSubmit prop:", onAddItemModalSubmit); // Debug the prop
         console.error("Error adding item:", err);
+        console.log("onAddItemModalSubmit prop:", onAddItemModalSubmit); // Debug the prop
       });
   };
 
