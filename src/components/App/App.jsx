@@ -54,7 +54,12 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weatherType }) => {
-    postItems({ name, imageUrl, weather: weatherType })
+    const newItem = {
+      name,
+      imageUrl,
+      weather: weatherType,
+    };
+    return postItems({ name, imageUrl, weather: weatherType })
       .then((newItem) => {})
       .catch((error) => console.error("Error adding item:", error));
   };
