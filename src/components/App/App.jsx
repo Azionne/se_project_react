@@ -27,6 +27,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleSwitchChange = () => {
     setCurrentTemperatureUnit(currentTemperatureUnit === "F" ? "C" : "F");
@@ -53,16 +54,20 @@ function App() {
     setActiveModal("");
   };
 
-  const handleAddItemModalSubmit = ({ name, imageUrl, weatherType }) => {
-    const newItem = {
-      name,
-      imageUrl,
-      weather: weatherType,
-    };
-    return postItems({ name, imageUrl, weather: weatherType })
-      .then((newItem) => {})
-      .catch((error) => console.error("Error adding item:", error));
+  const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
+    return postItems({ name, weather, imageUrl })
+      .then((res) => {
+        setClothingItems((prevItems) => [
+          { name, imageUrl, weather, _id: res._id }, // Add the new item at the front
+          ...prevItems, // Spread the existing items after the new item
+        ]);
+      })
+      .then(closeActiveModal)
+      .catch((err) => {
+        console.error("Error adding item:", err);
+      });
   };
+
   const handleCardDelete = (card) => {
     setActiveModal("delete");
     setCardToDelete(card);

@@ -1,8 +1,5 @@
-# React + Vite
+1. Project Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2. This app dynamically updates weather in real-time and gives clothing suggestions based on current weather.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. I've used react/api that dynamically allow me to change/convert elements being displayed (i.e weather, degrees). I've used api to fetch several arrays (clothing and weather options) to be displayed. I've also used form validation which allow users to input information about a new clothing being added to profile and homepage.

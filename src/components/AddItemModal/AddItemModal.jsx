@@ -40,12 +40,6 @@ export default function AddItemModal({
       });
   };
 
-  function resetForm() {
-    setName("");
-    setImageUrl("");
-    setWeatherType("");
-  }
-
   return (
     <ModelWithForm
       title="New garment"
@@ -57,11 +51,11 @@ export default function AddItemModal({
       <label htmlFor="name" className="modal__label">
         Name{" "}
         <input
+          required
           type="text"
           className="modal__input"
           id="name"
           placeholder="Name"
-          required
           minLength="1"
           maxLength="30"
           onChange={handleNameChange}
@@ -72,6 +66,7 @@ export default function AddItemModal({
       <label htmlFor="imageUrl" className="modal__label">
         Image{" "}
         <input
+          required
           type="url"
           className="modal__input"
           id="imageUrl"
@@ -85,6 +80,7 @@ export default function AddItemModal({
         <legend className="modal__legend">Select the weather type: </legend>
         <label htmlFor="hot" className="modal__label model__label_type_radio">
           <input
+            required
             id="hot"
             type="radio"
             className="modal__radio-input"

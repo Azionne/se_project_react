@@ -129,11 +129,17 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
-  background: #0000004d;
+  background-color: #000;
   color: #fff;
   padding: 8px 16px 8px 16px;
   cursor: pointer;
   margin: -57px 0px 0px -5px;
+}
+
+.modal__submit:hover {
+  background-color: #00000099;
+  color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .modal__weather {
