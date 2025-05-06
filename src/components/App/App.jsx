@@ -54,11 +54,11 @@ function App() {
     setActiveModal("");
   };
 
-  const handleAddItemModalSubmit = ({ name, imageUrl, weather }) => {
-    return postItems({ name, weather, imageUrl })
+  const handleAddItemModalSubmit = ({ name, imageUrl, weatherType }) => {
+    return postItems({ name, weather: weatherType, imageUrl }) // Pass weatherType to the API
       .then((res) => {
         setClothingItems((prevItems) => [
-          { name, imageUrl, weather, _id: res._id }, // Add the new item at the front
+          { name, imageUrl, weather: weatherType, _id: res._id }, // Add the new item at the front
           ...prevItems, // Spread the existing items after the new item
         ]);
       })
@@ -67,7 +67,6 @@ function App() {
         console.error("Error adding item:", err);
       });
   };
-
   const handleCardDelete = (card) => {
     setActiveModal("delete");
     setCardToDelete(card);
