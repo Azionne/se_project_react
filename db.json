@@ -73,20 +73,20 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
     },
     {
-      "name": "Myra Vorrice",
+      "name": "Coat",
       "weather": "hot",
       "imageUrl": "https://images.unsplash.com/photo-1730758405638-ab8659278e96?q=80&w=1827&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`",
       "_id": 17
     },
     {
-      "name": "Azionne Vorrice",
+      "name": "Shoes",
       "weather": "warm",
       "imageUrl": "https://images.unsplash.com/photo-1730758405638-ab8659278e96?q=80&w=1827&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`",
       "_id": 18
     },
     {
-      "name": "Myra Vorrice",
-      "weather": "hot",
+      "name": "Azionne Vorrice",
+      "weather": "cold",
       "imageUrl": "https://images.unsplash.com/photo-1730758405638-ab8659278e96?q=80&w=1827&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`",
       "_id": 19
     }

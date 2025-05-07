@@ -55,11 +55,11 @@ function App() {
   };
 
   const handleAddItemModalSubmit = ({ name, imageUrl, weatherType }) => {
-    return postItems({ name, weather: weatherType, imageUrl }) // Pass weatherType to the API
+    return postItems({ name, weather: weatherType, imageUrl })
       .then((res) => {
         setClothingItems((prevItems) => [
-          { name, imageUrl, weather: weatherType, _id: res._id }, // Add the new item at the front
-          ...prevItems, // Spread the existing items after the new item
+          { name, imageUrl, weather: weatherType, _id: res._id },
+          ...prevItems,
         ]);
       })
       .then(closeActiveModal)
