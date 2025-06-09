@@ -1,7 +1,8 @@
+import React from "react";
+import PropTypes from "prop-types";
 import ClothesSection from "../ClothesSection/ClothesSection";
-import Sidebar from "../SideBar/Sidebar";
-
 import "../Profile/Profile.css";
+import Sidebar from "../SideBar/Sidebar";
 
 function Profile({ onCardClick, weatherData, clothingItems, handleAddClick }) {
   console.log("Profile component rendered with weatherData:", weatherData);

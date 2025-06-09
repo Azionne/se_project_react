@@ -1,10 +1,20 @@
+import React, { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
+import CurrentUserContext from "../../context/CurrentUserContext";
+import PropTypes from "prop-types";
 
-function ClothesSection({ handleAddClick, onCardClick, clothingItems }) {
-  console.log(
-    "ClothesSection component rendered with clothingItems:",
-    clothingItems
+export default function ClothesSection({
+  handleAddClick,
+  onCardClick,
+  clothingItems,
+  onCardLike,
+}) {
+  const currentUser = useContext(CurrentUserContext);
+
+  // Filter items to only those owned by the current user
+  const userItems = clothingItems.filter(
+    (item) => item.owner === currentUser?._id
   );
 
   return (
@@ -16,18 +26,22 @@ function ClothesSection({ handleAddClick, onCardClick, clothingItems }) {
         </button>
       </div>
       <ul className="cards__list">
-        {clothingItems.map((item, index) => {
-          return (
-            <ItemCard
-              key={item._id || index}
-              item={item}
-              onCardClick={onCardClick}
-            />
-          );
-        })}
+        {userItems.map((item, index) => (
+          <ItemCard
+            key={item._id || index}
+            item={item}
+            onCardClick={onCardClick}
+            onCardLike={onCardLike}
+          />
+        ))}
       </ul>
     </div>
   );
 }
 
-export default ClothesSection;
+ClothesSection.propTypes = {
+  clothingItems: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleAddClick: PropTypes.func.isRequired,
+  onCardClick: PropTypes.func.isRequired,
+  onCardLike: PropTypes.func.isRequired,
+};

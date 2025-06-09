@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./AddItemModal.css";
-import ModelWithForm from "../ModalWithForm/ModalWithForm";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 export default function AddItemModal({
   onClose,
@@ -25,7 +25,6 @@ export default function AddItemModal({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     onAddItemModalSubmit({ name, imageUrl, weatherType })
       .then(() => {
         setName("");
@@ -34,14 +33,12 @@ export default function AddItemModal({
         onClose();
       })
       .catch((err) => {
-        console.log("onAddItemModalSubmit prop:", onAddItemModalSubmit); // Debug the prop
         console.error("Error adding item:", err);
-        console.log("onAddItemModalSubmit prop:", onAddItemModalSubmit); // Debug the prop
       });
   };
 
   return (
-    <ModelWithForm
+    <ModalWithForm
       title="New garment"
       buttonText="Add garment"
       isOpen={isOpen}
@@ -116,6 +113,6 @@ export default function AddItemModal({
           Cold
         </label>
       </fieldset>
-    </ModelWithForm>
+    </ModalWithForm>
   );
 }

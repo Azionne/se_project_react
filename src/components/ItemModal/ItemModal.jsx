@@ -1,7 +1,7 @@
 import "./ItemModal.css";
 import closeIcon from "../../assets/close-light.png";
 
-function ItemModal({ activeModal, onClose, card, onDelete }) {
+function ItemModal({ activeModal, onClose, card, onDeleteItem, isOwn }) {
   console.log("Card passed to ItemModal:", card);
   if (!card) {
     return null; // Do not render the modal if card is null or undefined
@@ -24,9 +24,14 @@ function ItemModal({ activeModal, onClose, card, onDelete }) {
           <div className="modal__footer">
             <h2 className="modal__caption">{card.name}</h2>
             <div className="modal__delete-btn">
-              <button className="modal__delete" onClick={() => onDelete(card)}>
-                Delete Item
-              </button>
+              {isOwn && (
+                <button
+                  className="modal__delete-button"
+                  onClick={() => onDeleteItem(card)}
+                >
+                  Delete item
+                </button>
+              )}
             </div>
 
             <p className="modal__weather">Weather: {card.weather}</p>
