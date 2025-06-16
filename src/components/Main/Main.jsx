@@ -2,15 +2,20 @@ import React, { useContext } from "react";
 import "../Main/Main.css";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
-import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
-function Main({
-  weatherData,
-  handleCardClick,
-  clothingItems,
-  onCardLike = [],
-}) {
+function Main(props) {
+  const {
+    weatherData,
+    handleCardClick,
+    clothingItems,
+    handleCardLike,
+    handleCardDelete,
+  } = props;
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
+  console.log("Main props:", props);
+
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
@@ -31,10 +36,10 @@ function Main({
             .map((item) => {
               return (
                 <ItemCard
-                  key={item._id}
+                  key={item.id}
                   item={item}
-                  onCardClick={handleCardClick}
-                  onCardLike={onCardLike}
+                  handleCardClick={handleCardClick}
+                  handleCardLike={handleCardLike}
                 />
               );
             })}

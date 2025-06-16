@@ -8,7 +8,7 @@ import Footer from "../Footer/Footer";
 import Profile from "../Profile/Profile";
 import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
-import CurrentTemperatureUnitContext from "../../context/CurrentTemperatureUnitContext";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getItems, deleteItems, postItems } from "../../utils/api";
 import DeleteItemModal from "../DeleItemModal/DeleteItemModal";
@@ -16,7 +16,7 @@ import RegisterModalForm from "../RegisterModalForm/RegisterModalForm";
 
 import LoginModalForm from "../LoginModalForm/LoginModalForm";
 import EditProfileModal from "../EditProfileModal/EditProfile";
-import CurrentUserContext from "../../context/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import * as api from "../../utils/api";
 import * as auth from "../../utils/auth.js";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
@@ -90,14 +90,26 @@ function App() {
         setIsSaving(false);
       });
   }
-  const handleCardLike = ({ _id, isLiked }) => {
+  const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
-    const apiMethod = isLiked ? api.removeCardLike : api.addCardLike;
-    apiMethod(_id, token)
+    const userId = currentUser?.id || currentUser?._id;
+    const item = clothingItems.find((card) => card.id === id);
+    const currentLikes = item ? item.likes : [];
+
+    const apiMethod = isLiked
+      ? (id, userId, token) =>
+          api.removeCardLike(id, userId, token, currentLikes)
+      : (id, userId, token) => api.addCardLike(id, userId, token, currentLikes);
+
+    apiMethod(id, userId, token)
       .then((newCard) => {
-        setClothingItems((oldCards) =>
-          oldCards.map((card) => (card._id === newCard._id ? newCard : card))
-        );
+        setClothingItems((oldCards) => {
+          const updated = oldCards.map((card) =>
+            card.id === newCard.id ? newCard : card
+          );
+          console.log("Updated clothingItems:", updated);
+          return updated;
+        });
       })
       .catch(console.error);
   };
@@ -112,7 +124,11 @@ function App() {
     auth
       .register({ name, avatar, email, password })
       .then(() => {
-        setActiveModal("register");
+        // Immediately log in the user after successful registration
+        return handleLogin({ email, password });
+      })
+      .then(() => {
+        closeActiveModal(); // Close the modal after login
       })
       .catch(async (err) => {
         console.error("Register error", err);
@@ -174,7 +190,7 @@ function App() {
     return postItems({ name, weather: weatherType, imageUrl })
       .then((res) => {
         setClothingItems((prevItems) => [
-          { name, imageUrl, weather: weatherType, _id: res._id },
+          { name, imageUrl, weather: weatherType, id: res.id },
           ...prevItems,
         ]);
       })
@@ -184,18 +200,16 @@ function App() {
       });
   };
   const handleCardDelete = (card) => {
-    setActiveModal("delete");
     setCardToDelete(card);
+    setActiveModal("delete");
   };
 
   const handleConfirmCardDelete = () => {
-    deleteItems(cardToDelete._id)
+    deleteItems(cardToDelete.id)
       .then((res) => {
         console.log(res);
         setClothingItems(([item, ...clothingItems]) =>
-          [item, ...clothingItems].filter(
-            (item) => item._id !== cardToDelete._id
-          )
+          [item, ...clothingItems].filter((item) => item.id !== cardToDelete.id)
         );
         closeActiveModal();
       })
@@ -215,8 +229,12 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log("Fetched clothing items:", data);
-        setClothingItems(data);
+        setClothingItems(
+          data.map((item) => ({
+            ...item,
+            likes: Array.isArray(item.likes) ? item.likes.filter(Boolean) : [],
+          }))
+        );
       })
       .catch((error) => {
         console.error("Error fetching items:", error.message);
@@ -245,6 +263,7 @@ function App() {
             handleAddClick={handleAddClick}
             handleRegisterClick={() => setActiveModal("register")}
             handleLoginClick={() => setActiveModal("login")}
+            setActiveModal={setActiveModal} // <-- add this if needed
             weatherData={weatherData}
           />
           <Routes>
@@ -253,9 +272,9 @@ function App() {
               element={
                 <Main
                   weatherData={weatherData}
-                  onCardClick={handleCardClick}
+                  handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
-                  onCardLike={handleCardLike}
+                  handleCardLike={handleCardLike} // <-- ADD THIS LINE
                 />
               }
             />
@@ -265,10 +284,11 @@ function App() {
                 <>
                   <Main
                     weatherData={weatherData}
-                    onCardClick={handleCardClick}
+                    handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
-                    onCardLike={handleCardLike}
+                    handleCardLike={handleCardLike} // <-- ADD THIS LINE
                   />
+
                   <RegisterModalForm
                     activeModal={activeModal}
                     onClose={closeActiveModal}
@@ -286,17 +306,9 @@ function App() {
                 <>
                   <Main
                     weatherData={weatherData}
-                    onCardClick={handleCardClick}
+                    handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
-                    onCardLike={handleCardLike}
-                  />
-                  <LoginModalForm
-                    activeModal={activeModal}
-                    onClose={closeActiveModal} // <-- fix here
-                    onLogin={handleLogin}
-                    isSaving={isSaving}
-                    setActiveModal={setActiveModal}
-                    loginError={loginError}
+                    handleCardLike={handleCardLike} // <-- ADD THIS
                   />
                 </>
               }
@@ -307,9 +319,9 @@ function App() {
                 <>
                   <Main
                     weatherData={weatherData}
-                    onCardClick={handleCardClick}
+                    handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
-                    onCardLike={handleCardLike}
+                    handleCardLike={handleCardLike}
                   />
                   <AddItemModal
                     isOpen={activeModal === "add"} // <-- use isOpen prop
@@ -326,13 +338,14 @@ function App() {
               element={
                 <ProtectedRoute isLoggedIn={isLogged}>
                   <Profile
+                    weatherData={weatherData}
                     clothingItems={clothingItems}
                     handleAddClick={handleAddClick}
-                    onCardClick={handleCardClick}
+                    handleCardClick={handleCardClick}
                     onEditProfile={() => {
                       setActiveModal("edit-profile");
                     }}
-                    onCardLike={handleCardLike}
+                    handleCardLike={handleCardLike}
                     onSignOut={handleSignOut}
                   />
                 </ProtectedRoute>
@@ -353,11 +366,12 @@ function App() {
             onDeleteItem={handleCardDelete}
           />
           <LoginModalForm
+            isOpen={activeModal === "login"}
             activeModal={activeModal}
-            onClose={closeActiveModal} // <-- fix here
+            setActiveModal={setActiveModal}
+            onClose={() => setActiveModal("")}
             onLogin={handleLogin}
             isSaving={isSaving}
-            setActiveModal={setActiveModal}
             loginError={loginError}
           />
           <RegisterModalForm
@@ -375,10 +389,9 @@ function App() {
             isSaving={isSaving}
           />
           <DeleteItemModal
-            activeModal={activeModal}
-            onClose={closeActiveModal} // <-- fix here
-            onConfirmDelete={handleConfirmCardDelete}
-            card={cardToDelete}
+            isOpen={activeModal === "delete"}
+            onClose={closeActiveModal}
+            onConfirm={handleConfirmCardDelete}
           />
         </div>
       </CurrentTemperatureUnitContext.Provider>

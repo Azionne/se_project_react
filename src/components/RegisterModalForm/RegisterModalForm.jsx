@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import "./RegisterModalForm.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModalForm({
-  onClose, // <-- use onClose, not closeActiveModal
-  activeModal,
-  registerError,
-  setActiveModal,
-  isSaving,
-  onRegister, // <-- use onRegister, not handleRegisterClick
-}) {
+export default function RegisterModalForm(props) {
+  const {
+    onClose,
+    activeModal,
+    registerError,
+    setActiveModal,
+    isSaving,
+    onRegister,
+  } = props;
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -96,8 +98,9 @@ function RegisterModalForm({
       title="Sign Up"
       buttonText={isSaving ? "Registering..." : "Sign Up"}
       isOpen={isOpen}
-      onClose={onClose} // <-- fix here
-      onSubmit={handleSubmit} // <-- fix here
+      onClose={onClose}
+      onSubmit={handleSubmit}
+      className="register-modal__form"
     >
       <label htmlFor="email" className="modal__label">
         Email{" "}
@@ -157,5 +160,3 @@ function RegisterModalForm({
     </ModalWithForm>
   );
 }
-
-export default RegisterModalForm;

@@ -1,13 +1,13 @@
-.card {
+.item-card {
   border-radius: 15px;
-  width: 323px;
-  height: 325px;
+  width: 325; /* changed from 323px */
+  height: 328x; /* changed from 325px */
   position: relative;
   display: flex;
   justify-content: center;
 }
 
-.card__name {
+.item-card__name {
   position: absolute;
   top: 15px;
   margin: 0;
@@ -22,9 +22,10 @@
   gap: 0px;
   border-radius: 4px;
   opacity: 0.9;
+  left: 117px;
 }
 
-.cards__list {
+.item-card-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: auto;
@@ -36,24 +37,43 @@
   list-style-type: none;
 }
 
-.card__image {
-  width: 100%;
+.item-card__image {
   border-radius: 15px;
+  width: 325px;
+  height: 328px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   position: relative;
   display: flex;
   justify-content: center;
+  object-fit: cover; /* ensures image fits nicely */
+}
+
+.item-card__like-btn {
+  background: white;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  top: 19px;
+  left: 236px;
+  background: none;
+}
+
+.item-card__heart {
+  width: 24px;
+  height: 24px;
+  left: 40px;
 }
 
 @media screen and (max-width: 380px) {
-  .card {
+  .item-card {
     position: relative;
     width: 162px;
     height: 162px;
     margin-top: 20px;
   }
 
-  .card__image {
+  .item-card__image {
     width: 162px;
     height: 162px;
     object-fit: cover;

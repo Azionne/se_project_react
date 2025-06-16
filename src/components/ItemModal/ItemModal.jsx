@@ -1,20 +1,26 @@
 import "./ItemModal.css";
 import closeIcon from "../../assets/close-light.png";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import React, { useContext } from "react";
 
-function ItemModal({ activeModal, onClose, card, onDeleteItem, isOwn }) {
-  console.log("Card passed to ItemModal:", card);
-  if (!card) {
-    return null; // Do not render the modal if card is null or undefined
-  }
+function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
+  const currentUser = useContext(CurrentUserContext);
+  const isOwner = card && currentUser && card.owner === currentUser.id;
 
-  return (
-    <div className={`modal ${activeModal === "preview" ? "modal_opened" : ""}`}>
+  if (!card) return null;
+
+  // Set the className for the delete button
+  const itemDeleteButtonClassName = `modal__delete-button${
+    isOwner ? "" : " modal__delete-button_hidden"
+  }`;
+
+  return activeModal === "preview" ? (
+    <div className="modal modal_opened">
       <div className="modal__content modal__content_type_image">
         <button className="modal__close" type="button" onClick={onClose}>
           <img src={closeIcon} alt="Close" />
         </button>
 
-        {console.log(card.imageUrl)}
         <img
           src={card.imageUrl}
           alt={card.name || "Weather wear"}
@@ -24,12 +30,12 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem, isOwn }) {
           <div className="modal__footer">
             <h2 className="modal__caption">{card.name}</h2>
             <div className="modal__delete-btn">
-              {isOwn && (
+              {isOwner && (
                 <button
-                  className="modal__delete-button"
+                  className={itemDeleteButtonClassName}
                   onClick={() => onDeleteItem(card)}
                 >
-                  Delete item
+                  Delete
                 </button>
               )}
             </div>
@@ -39,7 +45,7 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem, isOwn }) {
         </div>
       </div>
     </div>
-  );
+  ) : null;
 }
 
 export default ItemModal;

@@ -8,6 +8,7 @@ function ModalWithForm({
   isOpen,
   onClose,
   onSubmit,
+  formClassName, // <-- add this line
 }) {
   return (
     <div
@@ -15,7 +16,9 @@ function ModalWithForm({
       onClick={onClose} // <-- overlay click closes modal
     >
       <div
-        className="modal__content-form"
+        className={`modal__content-form${
+          formClassName ? " " + formClassName : ""
+        }`} // <-- apply here
         onClick={(e) => e.stopPropagation()} // <-- prevent close when clicking inside modal
       >
         <h2 className="modal__title">{title}</h2>
@@ -24,9 +27,6 @@ function ModalWithForm({
         </button>
         <form onSubmit={onSubmit} className="modal__form">
           {children}
-          <button type="submit" className="modal__submit">
-            {buttonText}
-          </button>
         </form>
       </div>
     </div>

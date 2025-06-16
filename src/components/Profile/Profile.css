@@ -2,4 +2,11 @@
   display: flex;
   margin-left: 20px;
   gap: 100px;
+  width: 1440px;
+}
+
+.profile__closet {
+  background: rgba(255, 0, 0, 0.1); /* light red background for testing */
+  border: 2px dashed red;
+  min-height: 200px;
 }

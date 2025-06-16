@@ -2,21 +2,34 @@ import React from "react";
 import PropTypes from "prop-types";
 import ClothesSection from "../ClothesSection/ClothesSection";
 import "../Profile/Profile.css";
-import Sidebar from "../SideBar/Sidebar";
+import Sidebar from "../SideBar/SideBar";
 
-function Profile({ onCardClick, weatherData, clothingItems, handleAddClick }) {
-  console.log("Profile component rendered with weatherData:", weatherData);
+function Profile({
+  handleAddClick,
+  handleCardClick,
+  onSelectCard,
+  onAddNewItem,
+  clothingItems,
+  handleCardLike,
+  handleEditProfile,
+  handleSignOut,
+}) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <Sidebar />
+        <Sidebar
+          handleEditProfile={handleEditProfile}
+          handleSignOut={handleSignOut}
+        />
       </section>
       <section className="profile__closet">
         <ClothesSection
-          handleAddClick={handleAddClick}
-          onCardClick={onCardClick}
-          weatherData={weatherData}
           clothingItems={clothingItems}
+          handleAddClick={handleAddClick}
+          handleCardClick={handleCardClick}
+          handleCardLike={handleCardLike}
+          handleEditProfile={handleEditProfile}
+          handleSignOut={handleSignOut}
         />
       </section>
     </div>

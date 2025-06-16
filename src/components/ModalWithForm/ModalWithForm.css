@@ -15,10 +15,15 @@
   background-color: rgba(0, 0, 0, 0.5);
 
   visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
 }
 
 .modal_opened {
   visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .modal__title {
@@ -52,12 +57,14 @@
   padding: 28px 28px 36px;
   background-color: #fff;
   max-width: 496px;
-  max-height: 436px;
-  height: 100%;
   width: 100%;
+  max-height: 436px;
+  height: auto; /* <-- Change from 100% to auto */
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  z-index: 10001; /* ensure it's above overlay */
 }
 
 .modal__form {

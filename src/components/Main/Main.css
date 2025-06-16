@@ -1,20 +1,19 @@
-.main__content {
+.main {
+  flex-grow: 1;
+}
+
+.cards {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center align the content */
-  gap: 24px; /* Add spacing between the weather card and the card list */
+  margin: 45px 8px 45px 48px;
 }
 
 .cards__list {
-  display: flex;
-  flex-wrap: nowrap;
-  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 15px;
+  grid-auto-rows: 328px;
   padding: 0;
-  list-style: none;
-  gap: 21px;
-}
-
-.cards__text {
-  margin-top: 40px;
-  margin-bottom: 34px;
+  width: 1360px;
+  height: 387px;
 }

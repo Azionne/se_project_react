@@ -1,3 +1,17 @@
+.register-modal {
+  /* Styles for the modal container */
+  background: #cd2020;
+  border-radius: 16px;
+  width: 496px;
+  height: 456px;
+  padding: 32px 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #ff4d00; /* If you want text color */
+}
+
 .register-modal__item-info {
   display: flex;
   justify-content: space-between;

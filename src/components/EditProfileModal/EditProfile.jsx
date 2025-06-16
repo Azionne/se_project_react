@@ -2,7 +2,7 @@ import React from "react";
 import "./EditProfileModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import PropTypes from "prop-types";
-import CurrentUserContext from "../../context/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 export default function EditProfileModal({
   onClose,
@@ -70,8 +70,4 @@ EditProfileModal.propTypes = {
   activeModal: PropTypes.string.isRequired,
   onEditProfile: PropTypes.func.isRequired,
   isSaving: PropTypes.bool.isRequired,
-  currentUser: PropTypes.shape({
-    name: PropTypes.string,
-    avatar: PropTypes.string,
-  }),
 };

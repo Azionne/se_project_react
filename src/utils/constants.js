@@ -63,37 +63,37 @@ export const weatherOptions = [
 
 export const clothingItems = [
   {
-    _id: 0,
+    id: 0,
     name: "Cap",
     weather: "hot",
     link: new URL("../assets/clothing/cap.png", import.meta.url).href,
   },
   {
-    _id: 1,
+    id: 1,
     name: "Hoodie",
     weather: "warm",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Hoodie.png?etag=5f52451d0958ccb1016c78a45603a4e8",
   },
   {
-    _id: 2,
+    id: 2,
     name: "Jacket",
     weather: "cold",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jacket.png?etag=f4bb188deaa25ac84ce2338be2d404ad",
   },
   {
-    _id: 3,
+    id: 3,
     name: "Sneakers",
     weather: "cold",
     link: new URL("../assets/clothing/sneakers.jpg", import.meta.url).href,
   },
   {
-    _id: 4,
+    id: 4,
     name: "T-Shirt",
     weather: "hot",
     link: new URL("../assets/clothing/t-shirt.jpg", import.meta.url).href,
   },
   {
-    _id: 5,
+    id: 5,
     name: "Coat",
     weather: "cold",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",

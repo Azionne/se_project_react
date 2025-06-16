@@ -1,9 +1,9 @@
-import React from "react";
-import "../Header/header.css";
+import React, { useContext } from "react";
+import "./Header.css";
 import logo from "../../assets/logo.svg";
-import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link, useLocation } from "react-router-dom";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Header({
   handleAddClick,
@@ -14,15 +14,13 @@ function Header({
   isLogged,
   isLoading,
   activeModal,
-  currentUser, // <-- add this
 }) {
   const location = useLocation();
+  const currentUser = useContext(CurrentUserContext); // <-- use context!
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
-
-  const isUsersMe = location.pathname === "/users/me";
 
   return (
     <header className="header">
@@ -36,35 +34,32 @@ function Header({
       </div>
       <div className="header__right">
         <ToggleSwitch />
+        <button
+          className="header__add-clothes-button"
+          type="button"
+          onClick={handleAddClick}
+        >
+          + Add Clothes
+        </button>
         <div className="header__actions">
-          {isUsersMe && (
-            /*isLogged*/ <>
-              <button
-                onClick={handleAddClick}
-                type="button"
-                className="header__button"
-              >
-                +Add clothes
-              </button>
-              <Link to="/profile" className="header__link">
-                <div className="header__avatar-container">
-                  <p className="header__username">
-                    {currentUser?.name || "Azionne Vorrice"}
-                  </p>
-                  {activeModal !== "login" && !isLoading && (
-                    <img
-                      src={currentUser?.avatar || avatar}
-                      alt="User avatar"
-                      className="header__avatar"
-                    />
-                  )}
+          {isLogged ? (
+            <div className="header__avatar-container">
+              {currentUser?.avatar ? (
+                <img
+                  src={currentUser.avatar}
+                  alt="User avatar"
+                  className="header__avatar"
+                />
+              ) : (
+                <div className="header__avatar-placeholder">
+                  {currentUser?.name ? currentUser.name[0].toUpperCase() : "?"}
                 </div>
-              </Link>
-            </>
-          )}
-
-          {/* Show Sign Up and Log In buttons everywhere except /users/me */}
-          {!isUsersMe && (
+              )}
+              <span className="header__username">
+                {currentUser?.name || "User"}
+              </span>
+            </div>
+          ) : (
             <>
               <div className="header__user-container">
                 <button
