@@ -1,0 +1,64 @@
+.delete-modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 670px;
+  height: 280px;
+  background: #ffffff;
+  border-radius: 15px;
+  font-family: "Cabinet Grotesk";
+  position: relative;
+}
+
+.delete-modal__text {
+  text-align: center;
+  font-size: 20px;
+  margin: 0;
+  font-weight: 700;
+}
+
+.delete-modal__submit {
+  background-color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  color: #ff4d00;
+  margin-bottom: 24px;
+  margin-top: 16px;
+}
+
+.cancel__submit {
+  background-color: #ffffff;
+  border: none;
+  cursor: pointer;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  color: #000000;
+}
+
+/* .delete-modal__content {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+  } */
+
+.delete-modal__close-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  color: #000000;
+  border: none;
+  background-color: #ffffff;
+  margin-top: 24px;
+  margin-bottom: 40px;
+  position: absolute;
+  top: -25px;
+}

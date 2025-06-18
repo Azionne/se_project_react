@@ -1,0 +1,155 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../vendor/fonts/CabinetGrotesk-Regular.woff") format("woff");
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0000004d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__title {
+  font-family: "Cabinet Grotesk";
+  font-weight: 700px;
+  font-size: 16px;
+  margin: 0;
+  padding: 0 0 24px 0;
+}
+
+.modal__content {
+  background-color: #ffffff;
+  position: relative;
+  padding: 28px 28px 36px;
+  width: 100%;
+  max-width: 496px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 28px 28px 36px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  border: none;
+  background-color: transparent;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__input {
+  display: block;
+  width: 100%;
+  border: none;
+  padding-top: 8px;
+  border-bottom: 1px solid #000000;
+}
+
+.modal__legend {
+  color: #000000;
+  font-size: 16px;
+  line-height: 1.25;
+  padding: 24px 0 12px 0;
+}
+
+.modal__label {
+  font-family: "Cabinet Grotesk";
+  font-weight: 700px;
+  font-size: 16px;
+  padding: 0 0 24px 0;
+  gap: 8px;
+}
+
+.modal__radio-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+  margin: 0;
+  padding: 0 0 36px 0;
+  border: none;
+  color: #00000080;
+}
+
+.modal__radio-input {
+  align-items: center;
+  border: none;
+}
+
+.modal__label_type_radio {
+  padding: 0;
+}
+
+input[type="radio"] {
+  accent-color: #000000;
+}
+
+/* Add shared modal button styles for Login and Signup */
+.modal__submit,
+.login-modal__submit,
+.register-modal__submit {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  width: 87px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 16px;
+}
+
+.modal__submit:disabled,
+.login-modal__submit:disabled,
+.register-modal__submit:disabled {
+  background-color: #0000004d;
+  cursor: not-allowed;
+}
+
+.modal__signup-link,
+.login-modal__signup-link,
+.register-modal__login-link {
+  display: inline-block;
+  margin-left: 16px;
+  vertical-align: middle;
+  color: #00000080;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.login-form__error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
+}
+
+.modal__required-message {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 2px;
+  display: block;
+}
+
+.button__container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
