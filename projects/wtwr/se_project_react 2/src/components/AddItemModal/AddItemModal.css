@@ -1,0 +1,56 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../vendor/fonts/CabinetGrotesk-Regular.woff") format("woff");
+}
+
+.modal__item-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal__delete-button {
+  color: #ff4d00;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk", sans-serif;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.add-item-modal__radio-buttons {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk", sans-serif;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  padding: 0;
+  margin: 0 0 24px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.add-item-modal__content {
+  width: 496px !important; /* or your desired width */
+  height: 463px !important; /* or your desired height */
+  max-width: none !important; /* override any max-width */
+  max-height: none !important; /* override any max-height */
+}
+
+.add-item-modal__submit {
+  font-family: "Cabinet Grotesk", sans-serif;
+  width: 124px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: #0000004d;
+  margin-top: -34px;
+  border: none;
+  color: white;
+}

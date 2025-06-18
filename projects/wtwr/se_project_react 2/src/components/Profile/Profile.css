@@ -1,0 +1,12 @@
+.profile {
+  display: flex;
+  margin-left: 20px;
+  gap: 100px;
+  width: 1440px;
+}
+
+.profile__closet {
+  background: none;
+  border: none;
+  min-height: 200px;
+}

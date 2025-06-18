@@ -1,0 +1,137 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url(../vendor/fonts/CabinetGrotesk-Regular.woff) format("woff");
+}
+
+.header {
+  width: 1360px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto 28px;
+}
+
+.header__left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header__logo {
+  margin-right: 24px;
+  width: 89px;
+  height: 40px;
+}
+
+.header__date-and-location {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk";
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__button {
+  margin-left: auto;
+  font-weight: 700;
+  font-size: 20px;
+  border: 0;
+  background-color: transparent;
+}
+
+.header__register-button {
+  display: flex;
+  color: #090909;
+  border: none;
+  padding: 8px 20px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  background: none;
+  margin-right: -41px;
+  font-family: "Cabinet Grotesk";
+}
+
+.header__register-button:hover {
+  background-color: #125ea2;
+}
+
+.header__login-button {
+  color: #090909;
+  border: none;
+  padding: 8px 20px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  background: none;
+  margin-left: 20px;
+  font-family: "Cabinet Grotesk";
+}
+.header__login-button :hover {
+  background-color: #125ea2;
+}
+
+.header__avatar-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: black;
+}
+
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  left: 1320px;
+  border-width: 1px;
+}
+
+.header__username {
+  margin: 0;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+}
+
+.header__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header__add-clothes-button {
+  color: #090909;
+  border: none;
+  padding: 8px 20px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+  background: none;
+  margin-left: 20px;
+  font-family: "Cabinet Grotesk";
+}
+
+.header__user-container {
+  display: flex;
+}
+
+.header__user-info {
+  margin-left: -341px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
