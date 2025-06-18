@@ -62,20 +62,22 @@ function Header({
         <div className="header__actions">
           {isLogged ? (
             <div className="header__avatar-container">
-              {currentUser?.avatar ? (
-                <img
-                  src={currentUser.avatar}
-                  alt="User avatar"
-                  className="header__avatar"
-                />
-              ) : (
-                <div className="header__avatar-placeholder">
-                  {currentUser?.name ? currentUser.name[0].toUpperCase() : "?"}
-                </div>
-              )}
-              <span className="header__username">
-                {currentUser?.name || "User"}
-              </span>
+              <Link to="/profile" className="header__profile-link">
+                {currentUser?.avatar ? (
+                  <img
+                    src={currentUser.avatar}
+                    alt="User avatar"
+                    className="header__avatar"
+                  />
+                ) : (
+                  <div className="header__avatar-placeholder">
+                    {currentUser?.name ? currentUser.name[0].toUpperCase() : "?"}
+                  </div>
+                )}
+                <span className="header__username">
+                  {currentUser?.name || "User"}
+                </span>
+              </Link>
             </div>
           ) : (
             !hideAuthButtons && (
