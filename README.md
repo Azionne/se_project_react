@@ -2,4 +2,7 @@
 
 This app dynamically updates weather in real-time and gives clothing suggestions based on current weather.
 
-I've used React/API that dynamically allow me to change/convert elements being displayed (i.e weather, degrees). I've used API to fetch several arrays (clothing and weather options) to be displayed. I've also used form validation which allow users to input information about a new clothing being added to profile and homepage.
+I've used React and APIs to dynamically change and display elements such as weather and temperature. The app fetches arrays for clothing and weather options to display relevant information. Form validation is implemented to allow users to input information about new clothing items, which are then shown on the profile and homepage.
+
+Links:  
+[Backend repository](git@github.com:Azionne/se_project_express.git)
