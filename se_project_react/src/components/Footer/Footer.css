@@ -1,0 +1,27 @@
+.footer {
+  width: 100%;
+  max-width: 1358px;
+  height: 20px;
+  margin: 40px auto 45px auto;
+  padding: 0 47px;
+  justify-content: space-between;
+  display: flex;
+  clear: both;
+  box-sizing: border-box;
+}
+.footer__text {
+  font-family: Cabinet Grotesk;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+  vertical-align: bottom;
+}
+
+.footer__year {
+  font-family: Cabinet Grotesk;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0;
+}

@@ -1,0 +1,17 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f3f3f3;
+}
+
+.page {
+  background-color: #f3f3f3;
+  flex: 1;
+}
+
+.page__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}

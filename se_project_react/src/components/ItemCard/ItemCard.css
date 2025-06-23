@@ -1,0 +1,85 @@
+.item-card {
+  border-radius: 15px;
+  width: 325; /* changed from 323px */
+  height: 328x; /* changed from 325px */
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.item-card__name {
+  position: absolute;
+  top: 15px;
+  margin: 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 1;
+  background-color: #ffffff;
+  width: auto;
+  padding: 4px 12px;
+  height: 24px;
+  gap: 0px;
+  border-radius: 4px;
+  opacity: 0.9;
+  left: 117px;
+}
+
+.item-card-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
+  gap: 21px;
+  max-height: 650px;
+  overflow-y: auto;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.item-card__image {
+  border-radius: 15px;
+  width: 325px;
+  height: 328px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  object-fit: cover; /* ensures image fits nicely */
+}
+
+.item-card__like-btn {
+  background: white;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  top: 19px;
+  left: 236px;
+  background: none;
+}
+
+.item-card__heart {
+  width: 24px;
+  height: 24px;
+  left: 40px;
+}
+
+.item-card__like-btn_active .item-card__heart {
+  filter: brightness(0) saturate(100%); /* makes the heart icon black */
+}
+
+@media screen and (max-width: 380px) {
+  .item-card {
+    position: relative;
+    width: 162px;
+    height: 162px;
+    margin-top: 20px;
+  }
+
+  .item-card__image {
+    width: 162px;
+    height: 162px;
+    object-fit: cover;
+  }
+}

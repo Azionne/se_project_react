@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url(../vendor/fonts/CabinetGrotesk-Regular.woff) format("woff");
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 260px;
+  margin-right: 116px;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.sidebar__profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  bottom: 24px;
+}
+
+.sidebar__username {
+  font-family: "Cabinet Grotesk";
+  font-weight: 700;
+  font-size: 20px;
+  margin-right: 0;
+  margin-left: 16px;
+  white-space: nowrap;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+  padding-bottom: 24px;
+}
+
+.sidebar__buttons {
+  padding-bottom: 8px;
+}
+
+.sidebar__button {
+  font-family: "Cabinet Grotesk";
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  line-height: 1;
+  bottom: 8px;
+}
+
+.sidebar__button_edit-profile {
+  margin-bottom: 16px; /* Add space below the edit profile button */
+}

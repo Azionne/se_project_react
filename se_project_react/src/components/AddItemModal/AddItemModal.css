@@ -1,0 +1,77 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../vendor/fonts/CabinetGrotesk-Regular.woff") format("woff");
+}
+
+/* Ensure modal is properly centered */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #0000004d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.modal_opened {
+  visibility: visible;
+}
+
+.modal__item-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal__delete-button {
+  color: #ff4d00;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk", sans-serif;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.add-item-modal__radio-buttons {
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  font-family: "Cabinet Grotesk", sans-serif;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  padding: 0;
+  margin: 0 0 24px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.add-item-modal__content {
+  background-color: #ffffff;
+  position: relative;
+  padding: 28px 28px 36px;
+  width: 496px;
+  height: 463px;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+
+.add-item-modal__submit {
+  font-family: "Cabinet Grotesk", sans-serif;
+  width: 124px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: #0000004d;
+  margin-top: -34px;
+  border: none;
+  color: white;
+}

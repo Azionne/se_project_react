@@ -1,0 +1,78 @@
+.edit-profile-modal .modal__content {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.12);
+  width: 496px;
+  height: 364px;
+  max-width: 496px;
+  min-width: 320px;
+  padding: 32px 32px 28px 32px;
+}
+
+.edit-profile-modal .modal__title {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #222;
+}
+
+.edit-profile-modal__label {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.edit-profile-modal__input {
+  width: 100%;
+  font-size: 16px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  border: none;
+  border-bottom: 1px solid #000;
+  margin-bottom: 24px;
+  padding: 8px 0;
+  background: transparent;
+}
+
+.edit-profile-modal .modal__button {
+  background: #000;
+  color: #fff;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  margin-top: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
+
+.edit-profile-modal .modal__button:hover {
+  background: #222;
+}
+
+.edit-profile-modal__save-btn {
+  background: #000;
+  color: #fff;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 0;
+  margin-top: -34px;
+  cursor: pointer;
+  width: 128px;
+  margin-bottom: 16px;
+  transition: background 0.2s;
+  display: block;
+}
+
+.edit-profile-modal__save-btn:hover {
+  background: #222;
+}

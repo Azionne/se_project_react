@@ -1,0 +1,218 @@
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../vendor/fonts/CabinetGrotesk-Regular.woff") format("woff");
+}
+.login-modal {
+  display: flex;
+  position: fixed;
+  width: 496px;
+  height: 304px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #0000004d;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+}
+
+.login-modal_opened {
+  visibility: visible;
+}
+
+/* Title styling */
+.login-modal__title {
+  display: inline;
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.login-modal__title-text {
+  color: black;
+}
+
+.login-modal__title-error {
+  color: red;
+  margin-left: 4px;
+}
+
+.login-modal__label {
+  position: relative;
+  display: block;
+  margin-bottom: 24px;
+}
+
+.login-modal__close {
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 23px;
+  right: 23px;
+  padding: 0;
+  max-width: 16px;
+  max-height: 16px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.modal__content-form {
+  font-family: "Cabinet Grotesk";
+  position: relative;
+  padding: 28px 28px 36px;
+  background-color: #fff;
+  max-width: 496px;
+  max-height: px;
+  width: 496px;
+  height: 304px;
+  width: 100%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-modal__form {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 100%;
+  gap: 32px;
+}
+
+.login-modal__input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #000000;
+  box-sizing: border-box;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+  transition: border-bottom 0.3s;
+}
+
+.login-modal__input:last-of-type {
+  margin-bottom: 0;
+  padding: 0;
+}
+
+.login-modal__legend {
+  font-family: "Cabinet Grotesk";
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 12px;
+}
+
+.login-modal__radio-button {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.login-modal__radio-buttons {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  padding: 0;
+  margin: 0 0 24px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.login-modal__radio-input {
+  margin: 0;
+  width: 16px;
+  height: 16px;
+}
+
+.login-modal__radio-label {
+  margin: 0;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.modal__submit {
+  border-radius: 4px;
+  border-style: none;
+  width: 73px;
+  height: 36px;
+  margin-left: 0;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  background-color: #ad1717;
+  color: #fff;
+  padding: 8px 16px 8px 16px;
+  cursor: pointer;
+  margin: -16px;
+  margin-left: -5px;
+}
+
+.login-modal__submit {
+  background-color: #0000004d;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  width: 87px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-modal__submit:hover {
+  background-color: #0d0d0d99;
+  color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.login-modal__weather {
+  margin-top: -26px;
+}
+
+.login-modal__signup-text {
+  margin-top: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-modal__signup-link {
+  display: inline-block;
+  margin-left: 16px;
+  vertical-align: middle;
+  color: #00000080;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: "Cabinet Grotesk", sans-serif;
+  margin-left: 111px;
+  margin-top: -25px;
+}
+
+.login-modal__actions {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.login-modal__or {
+  margin-left: 12px;
+}
+
+.login-form__error {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Required asterisk styling */
+.modal__required-asterisk {
+  color: red;
+}
