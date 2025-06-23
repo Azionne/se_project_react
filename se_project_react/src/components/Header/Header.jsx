@@ -39,7 +39,7 @@ function Header({
         </p>
       </div>
       <div className="header__right">
-        <ToggleSwitch />
+        {location.pathname !== "/profile" && <ToggleSwitch />}
         {isLogged && (
           <button
             className="header__add-clothes-button"
@@ -54,18 +54,12 @@ function Header({
           {isLogged ? (
             <div className="header__avatar-container">
               <Link to="/profile" className="header__profile-link">
-                {currentUser?.avatar ? (
+                {currentUser?.avatar && (
                   <img
                     src={currentUser.avatar}
                     alt="User avatar"
                     className="header__avatar"
                   />
-                ) : (
-                  <div className="header__avatar-placeholder">
-                    {currentUser?.name
-                      ? currentUser.name[0].toUpperCase()
-                      : "?"}
-                  </div>
                 )}
                 <span className="header__username">
                   {currentUser?.name || "User"}

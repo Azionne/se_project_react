@@ -8,21 +8,18 @@ import liked from "../../assets/liked.svg";
 export default function ItemCard({ item, handleCardClick, handleCardLike }) {
   const currentUser = useContext(CurrentUserContext);
   const likes = Array.isArray(item.likes) ? item.likes : [];
-  const isLiked =
-    currentUser &&
-    Array.isArray(item.likes) &&
-    item.likes.includes(currentUser._id);
+
+  // For testing purposes, use a test user ID if no user is logged in
+  const userId = currentUser?._id || "test-user";
+
+  const isLiked = Array.isArray(item.likes) && item.likes.includes(userId);
 
   function handleLike(e) {
     e.stopPropagation();
 
-    if (!currentUser) {
-      console.log("Please log in to like items");
-      return;
-    }
-
     if (typeof handleCardLike === "function") {
       handleCardLike({ _id: item._id, isLiked });
+    } else {
       console.error("handleCardLike is not a function");
     }
   }

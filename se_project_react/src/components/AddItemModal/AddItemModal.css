@@ -10,15 +10,15 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #0000004d;
-  display: flex;
+  background-color: transparent;
+  display: none;
   justify-content: center;
   align-items: center;
-  visibility: hidden;
+  z-index: 1000;
 }
 
 .modal_opened {
-  visibility: visible;
+  display: flex;
 }
 
 .modal__item-info {
@@ -60,9 +60,12 @@
   position: relative;
   padding: 28px 28px 36px;
   width: 496px;
+  max-width: 90vw;
   height: 463px;
+  max-height: 90vh;
   box-sizing: border-box;
   border-radius: 20px;
+  margin: auto;
 }
 
 .add-item-modal__submit {

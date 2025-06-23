@@ -10,7 +10,13 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal";
-import { getItems, deleteItems, postItems } from "../../utils/api";
+import {
+  getItems,
+  deleteItems,
+  postItems,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
 import DeleteItemModal from "../DeleItemModal/DeleteItemModal";
 import RegisterModalForm from "../RegisterModalForm/RegisterModalForm";
 
@@ -73,15 +79,14 @@ function App() {
       console.error("handleCardLike called with undefined _id");
     }
     const token = localStorage.getItem("jwt");
-    const userId = currentUser?._id;
+    // For testing purposes, use a test user ID if no user is logged in
+    const userId = currentUser?._id || "test-user";
     const item = clothingItems.find((card) => card._id === _id);
     const currentLikes = item ? item.likes : [];
 
     const apiMethod = isLiked
-      ? (_id, userId, token) =>
-          api.removeCardLike(_id, userId, token, currentLikes)
-      : (_id, userId, token) =>
-          api.addCardLike(_id, userId, token, currentLikes);
+      ? (_id, userId, token) => removeCardLike(_id, userId, token, currentLikes)
+      : (_id, userId, token) => addCardLike(_id, userId, token, currentLikes);
 
     apiMethod(_id, userId, token)
       .then((newCard) => {
@@ -117,7 +122,8 @@ function App() {
     setIsSaving(true);
     auth
       .register({ name, avatar, email, password })
-      .then(() => {
+      .then((response) => {
+        console.log("Registration successful:", response);
         // Immediately log in the user after successful registration
         return handleLogin({ email, password });
       })
@@ -268,7 +274,6 @@ function App() {
     setCurrentUser({});
     setToken("");
     closeActiveModal();
-    setClothingItems([]);
     navigate("/", { replace: true });
   };
 
@@ -288,7 +293,7 @@ function App() {
         <div className="app">
           <Header
             handleAddClick={handleAddClick}
-            handleRegisterClick={() => setActiveModal("register")}
+            handleRegisterClick={() => setActiveModal("sign-up")}
             handleLoginClick={() => setActiveModal("login")}
             setActiveModal={setActiveModal}
             weatherData={weatherData}

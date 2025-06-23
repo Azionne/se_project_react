@@ -40,16 +40,29 @@ function postItems({ name, weather, imageUrl }, token) {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  // For JSON server, generate a simple ID
+  // For JSON server, let it generate its own ID and we'll map it to _id in the response
   const body = USE_JSON_SERVER
-    ? { id: Date.now(), name, weather, imageUrl }
+    ? {
+        name,
+        weather,
+        imageUrl,
+        likes: [], // Initialize likes array
+      }
     : { name, weather, imageUrl };
 
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers,
     body: JSON.stringify(body),
-  }).then(handleServerResponse);
+  })
+    .then(handleServerResponse)
+    .then((item) => {
+      // For JSON server, ensure the item has _id field matching id
+      if (USE_JSON_SERVER && item.id && !item._id) {
+        return { ...item, _id: item.id };
+      }
+      return item;
+    });
 }
 
 function deleteItems(_id, token) {
@@ -62,20 +75,97 @@ function deleteItems(_id, token) {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  return fetch(`${baseUrl}/items/${_id}`, {
-    method: "DELETE",
-    headers,
-  }).then(handleServerResponse);
+  // For JSON server, we need to find the item first to get its 'id' field
+  if (USE_JSON_SERVER) {
+    console.log("Deleting item with _id:", _id);
+    // First get all items to find the one with matching _id or id
+    return fetch(`${baseUrl}/items`)
+      .then(handleServerResponse)
+      .then((items) => {
+        console.log(
+          "All items:",
+          items.map((item) => ({ id: item.id, _id: item._id }))
+        );
+        // Look for item by _id first, then by id if _id doesn't exist
+        let item = items.find((item) => item._id == _id);
+        console.log("Found by _id:", item);
+        if (!item) {
+          // If no _id match, try matching by id field
+          item = items.find((item) => item.id == _id);
+          console.log("Found by id:", item);
+        }
+        if (!item) {
+          console.error(`Item with id ${_id} not found in items:`, items);
+          throw new Error(`Item with id ${_id} not found`);
+        }
+        // Use the JSON server 'id' field for deletion
+        const itemId = item.id;
+        console.log("Using itemId for deletion:", itemId);
+        return fetch(`${baseUrl}/items/${itemId}`, {
+          method: "DELETE",
+          headers,
+        });
+      })
+      .then(handleServerResponse);
+  } else {
+    // Express backend uses _id directly
+    return fetch(`${baseUrl}/items/${_id}`, {
+      method: "DELETE",
+      headers,
+    }).then(handleServerResponse);
+  }
 }
 
-export function addCardLike(_id, userId, token, currentLikes = []) {
-  return fetch(`${baseUrl}/items/${_id}/likes`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  }).then(handleServerResponse);
+function addCardLike(_id, userId, token, currentLikes = []) {
+  if (USE_JSON_SERVER) {
+    // For JSON server, update the item's likes array
+    const newLikes = currentLikes.includes(userId)
+      ? currentLikes
+      : [...currentLikes, userId];
+    // JSON server uses 'id' in the URL, but our items use '_id'
+    const itemId = _id;
+    return fetch(`${baseUrl}/items/${itemId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ likes: newLikes }),
+    }).then(handleServerResponse);
+  } else {
+    // Express backend
+    return fetch(`${baseUrl}/items/${_id}/likes`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(handleServerResponse);
+  }
+}
+
+function removeCardLike(_id, userId, token, currentLikes = []) {
+  if (USE_JSON_SERVER) {
+    // For JSON server, update the item's likes array
+    const newLikes = currentLikes.filter((id) => id !== userId);
+    // JSON server uses 'id' in the URL, but our items use '_id'
+    const itemId = _id;
+    return fetch(`${baseUrl}/items/${itemId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ likes: newLikes }),
+    }).then(handleServerResponse);
+  } else {
+    // Express backend
+    return fetch(`${baseUrl}/items/${_id}/likes`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(handleServerResponse);
+  }
 }
 
 export function updateProfile({ name, avatar }, token) {
@@ -89,4 +179,4 @@ export function updateProfile({ name, avatar }, token) {
   }).then(handleServerResponse);
 }
 
-export { getItems, postItems, deleteItems };
+export { getItems, postItems, deleteItems, addCardLike, removeCardLike };
