@@ -38,7 +38,7 @@ npm run dev
 
 - Your app will now use the data from `db.json`
 - You can add, edit, and delete items
-- Changes will be saved to `db.json` automatically
+- Changes will be saved to `db.json` automatically`
 
 ### Step 5: Switch Back to Express Backend
 
