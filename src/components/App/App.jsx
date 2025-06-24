@@ -44,7 +44,7 @@ function App() {
   const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState({});
   const [registerError, setRegistraterError] = useState({});
   const [registrationError, setRegistrationError] = useState("");
@@ -77,11 +77,27 @@ function App() {
   const handleCardLike = ({ _id, isLiked }) => {
     if (!_id) {
       console.error("handleCardLike called with undefined _id");
+      return;
     }
+
+    // Only allow liking if user is logged in
+    if (!currentUser) {
+      return;
+    }
+
     const token = localStorage.getItem("jwt");
-    // For testing purposes, use a test user ID if no user is logged in
-    const userId = currentUser?._id || "test-user";
-    const item = clothingItems.find((card) => card._id === _id);
+    const userId = currentUser._id;
+
+    // Find item by either _id or id field
+    const item = clothingItems.find(
+      (card) => card._id === _id || card.id === _id
+    );
+
+    if (!item) {
+      console.error("Item not found with id:", _id);
+      return;
+    }
+
     const currentLikes = item ? item.likes : [];
 
     const apiMethod = isLiked
@@ -90,10 +106,20 @@ function App() {
 
     apiMethod(_id, userId, token)
       .then((newCard) => {
+        console.log("API returned updated card:", newCard);
         setClothingItems((oldCards) => {
-          const updated = oldCards.map((card) =>
-            card._id === newCard._id ? newCard : card
-          );
+          const updated = oldCards.map((card) => {
+            // Match by either _id or id field
+            if (
+              card._id === _id ||
+              card.id === _id ||
+              card._id === newCard._id ||
+              card.id === newCard.id
+            ) {
+              return { ...card, ...newCard };
+            }
+            return card;
+          });
           console.log("Updated clothingItems:", updated);
           return updated;
         });
@@ -233,10 +259,14 @@ function App() {
     getItems(token)
       .then((data) => {
         setClothingItems(
-          data.map((item) => ({
-            ...item,
-            likes: Array.isArray(item.likes) ? item.likes.filter(Boolean) : [],
-          }))
+          data
+            .map((item) => ({
+              ...item,
+              likes: Array.isArray(item.likes)
+                ? item.likes.filter(Boolean)
+                : [],
+            }))
+            .reverse() // Reverse the array so newest items (last in JSON) appear first
         );
       })
       .catch((error) => {
@@ -258,11 +288,11 @@ function App() {
           // If token is invalid, remove it and log out
           localStorage.removeItem("jwt");
           setIsLogged(false);
-          setCurrentUser({});
+          setCurrentUser(null);
         });
     } else {
       setIsLogged(false);
-      setCurrentUser({});
+      setCurrentUser(null);
     }
   }, []); // Remove isLogged dependency to prevent infinite loop
 
@@ -271,7 +301,7 @@ function App() {
   const handleSignOut = () => {
     localStorage.removeItem("jwt");
     setIsLogged(false);
-    setCurrentUser({});
+    setCurrentUser(null);
     setToken("");
     closeActiveModal();
     navigate("/", { replace: true });
@@ -340,7 +370,7 @@ function App() {
             <Route
               path="users/me"
               element={
-                <>
+                <ProtectedRoute isLoggedIn={isLogged}>
                   <Main
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
@@ -353,7 +383,7 @@ function App() {
                     onAddItemModalSubmit={handleAddItemModalSubmit} // fix prop name
                     isSaving={isSaving}
                   />
-                </>
+                </ProtectedRoute>
               }
             />
 

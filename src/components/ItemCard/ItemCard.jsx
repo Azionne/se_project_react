@@ -24,7 +24,9 @@ export default function ItemCard({ item, handleCardClick, handleCardLike }) {
     }
 
     if (typeof handleCardLike === "function") {
-      handleCardLike({ _id: item._id, isLiked });
+      // Use either _id or id field, whichever exists
+      const itemId = item._id || item.id;
+      handleCardLike({ _id: itemId, isLiked });
     } else {
       console.error("handleCardLike is not a function");
     }
