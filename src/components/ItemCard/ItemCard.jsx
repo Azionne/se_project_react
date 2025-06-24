@@ -9,13 +9,18 @@ export default function ItemCard({ item, handleCardClick, handleCardLike }) {
   const currentUser = useContext(CurrentUserContext);
   const likes = Array.isArray(item.likes) ? item.likes : [];
 
-  // For testing purposes, use a test user ID if no user is logged in
-  const userId = currentUser?._id || "test-user";
+  // Only use user ID if user is actually logged in
+  const userId = currentUser?._id;
 
-  const isLiked = Array.isArray(item.likes) && item.likes.includes(userId);
+  const isLiked = currentUser && Array.isArray(item.likes) && item.likes.includes(userId);
 
   function handleLike(e) {
     e.stopPropagation();
+
+    // Only allow liking if user is logged in
+    if (!currentUser) {
+      return;
+    }
 
     if (typeof handleCardLike === "function") {
       handleCardLike({ _id: item._id, isLiked });
@@ -23,15 +28,6 @@ export default function ItemCard({ item, handleCardClick, handleCardLike }) {
       console.error("handleCardLike is not a function");
     }
   }
-
-  console.log(
-    "likes:",
-    item.likes,
-    "currentUser._id:",
-    currentUser._id,
-    "typeof _id:",
-    typeof currentUser._id
-  );
 
   return (
     <li className="item-card">
@@ -43,20 +39,22 @@ export default function ItemCard({ item, handleCardClick, handleCardLike }) {
       />
       <div className="item-card__content">
         <span className="item-card__name">{item.name}</span>
-        <button
-          className={`item-card__like-btn${
-            isLiked ? " item-card__like-btn_active" : ""
-          }`}
-          onClick={handleLike}
-          aria-label={isLiked ? "Unlike" : "Like"}
-          type="button"
-        >
-          <img
-            src={isLiked ? liked : likeClear}
-            alt={isLiked ? "Liked" : "Not liked"}
-            className="item-card__heart"
-          />
-        </button>
+        {currentUser && (
+          <button
+            className={`item-card__like-btn${
+              isLiked ? " item-card__like-btn_active" : ""
+            }`}
+            onClick={handleLike}
+            aria-label={isLiked ? "Unlike" : "Like"}
+            type="button"
+          >
+            <img
+              src={isLiked ? liked : likeClear}
+              alt={isLiked ? "Liked" : "Not liked"}
+              className="item-card__heart"
+            />
+          </button>
+        )}
       </div>
     </li>
   );
