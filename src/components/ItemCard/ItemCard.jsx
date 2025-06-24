@@ -12,7 +12,8 @@ export default function ItemCard({ item, handleCardClick, handleCardLike }) {
   // Only use user ID if user is actually logged in
   const userId = currentUser?._id;
 
-  const isLiked = currentUser && Array.isArray(item.likes) && item.likes.includes(userId);
+  const isLiked =
+    currentUser && Array.isArray(item.likes) && item.likes.includes(userId);
 
   function handleLike(e) {
     e.stopPropagation();
