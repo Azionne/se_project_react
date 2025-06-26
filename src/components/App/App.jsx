@@ -337,56 +337,10 @@ function App() {
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
-                  handleCardLike={handleCardLike} // <-- ADD THIS LINE
+                  handleCardLike={handleCardLike}
                 />
               }
             />
-            <Route
-              path="/register"
-              element={
-                <>
-                  <Main
-                    weatherData={weatherData}
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    handleCardLike={handleCardLike} // <-- ADD THIS LINE
-                  />
-                </>
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <>
-                  <Main
-                    weatherData={weatherData}
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    handleCardLike={handleCardLike} // <-- ADD THIS
-                  />
-                </>
-              }
-            />
-            <Route
-              path="users/me"
-              element={
-                <ProtectedRoute isLoggedIn={isLogged}>
-                  <Main
-                    weatherData={weatherData}
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    handleCardLike={handleCardLike}
-                  />
-                  <AddItemModal
-                    isOpen={activeModal === "add"} // <-- use isOpen prop
-                    onClose={closeActiveModal}
-                    onAddItemModalSubmit={handleAddItemModalSubmit} // fix prop name
-                    isSaving={isSaving}
-                  />
-                </ProtectedRoute>
-              }
-            />
-
             <Route
               path="/profile"
               element={

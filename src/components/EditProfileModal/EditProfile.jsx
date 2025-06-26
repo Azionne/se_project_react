@@ -49,10 +49,7 @@ export default function EditProfileModal({
       onSubmit={handleSubmit}
       contentClassName="edit-profile-modal"
     >
-      <label
-        className="modal__label edit-profile-modal__label"
-        htmlFor="edit-profile-name"
-      >
+      <label className="modal__label edit-profile-modal__label">
         Name *
         <input
           type="text"
@@ -67,10 +64,7 @@ export default function EditProfileModal({
           maxLength={20}
         />
       </label>
-      <label
-        className="modal__label edit-profile-modal__label"
-        htmlFor="edit-profile-avatar"
-      >
+      <label className="modal__label edit-profile-modal__label">
         Avatar *
         <input
           type="url"

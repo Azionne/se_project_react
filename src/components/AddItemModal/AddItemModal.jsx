@@ -55,96 +55,97 @@ export default function AddItemModal({
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
-      formClassName="add-item-modal__modal-content"
-      contentClassName="add-item-modal__content"
     >
-      <label htmlFor="name" className="modal__label">
-        Name <span style={{ color: "red" }}>*</span>
-        <input
-          required
-          type="text"
-          className="modal__input"
-          id="name"
-          placeholder="Name"
-          minLength={minNameLength}
-          maxLength={maxNameLength}
-          onChange={handleNameChange}
-          value={name}
-        />
-        {nameTouched && nameInvalid && (
-          <span className="modal__required-message">
-            Name must be {minNameLength}-{maxNameLength} characters
-          </span>
-        )}
-      </label>
-
-      <label htmlFor="imageUrl" className="modal__label">
-        Url <span style={{ color: "red" }}>*</span>
-        <input
-          required
-          type="url"
-          className="modal__input"
-          id="imageUrl"
-          placeholder="Image URL"
-          minLength="1"
-          onChange={handleImageUrlChange}
-          value={imageUrl}
-        />
-        {imageUrlTouched && imageUrlInvalid && (
-          <span className="modal__required-message">
-            Please enter a valid URL
-          </span>
-        )}
-      </label>
-      <fieldset className="add-item-modal__radio-buttons">
-        <legend className="modal__legend">
-          Select the weather type: <span style={{ color: "red" }}>*</span>
-        </legend>
-        <label htmlFor="hot" className="modal__label model__label_type_radio">
+      <div className="add-item-modal__wrapper">
+        <label className="modal__label">
+          Name <span className="modal__required-asterisk">*</span>
           <input
             required
-            id="hot"
-            type="radio"
-            className="modal__radio-input"
-            name="weatherType"
-            value="hot"
-            onChange={handleWeatherTypeChange}
-            checked={weatherType === "hot"}
+            type="text"
+            className="modal__input"
+            id="add-item-name"
+            placeholder="Name"
+            minLength={minNameLength}
+            maxLength={maxNameLength}
+            onChange={handleNameChange}
+            value={name}
           />
-          Hot
+          {nameTouched && nameInvalid && (
+            <span className="modal__required-message">
+              Name must be {minNameLength}-{maxNameLength} characters
+            </span>
+          )}
         </label>
-        <label htmlFor="warm" className="modal__label model__label_type_radio">
+
+        <label className="modal__label">
+          Url <span className="modal__required-asterisk">*</span>
           <input
-            id="warm"
-            type="radio"
-            className="modal__radio-input"
-            name="weatherType"
-            value="warm"
-            onChange={handleWeatherTypeChange}
-            checked={weatherType === "warm"}
+            required
+            type="url"
+            className="modal__input"
+            id="add-item-imageUrl"
+            placeholder="Image URL"
+            minLength="1"
+            onChange={handleImageUrlChange}
+            value={imageUrl}
           />
-          Warm
+          {imageUrlTouched && imageUrlInvalid && (
+            <span className="modal__required-message">
+              Please enter a valid URL
+            </span>
+          )}
         </label>
-        <label htmlFor="cold" className="modal__label model__label_type_radio">
-          <input
-            id="cold"
-            type="radio"
-            className="modal__radio-input"
-            name="weatherType"
-            value="cold"
-            onChange={handleWeatherTypeChange}
-            checked={weatherType === "cold"}
-          />
-          Cold
-        </label>
-      </fieldset>
-      <button
-        type="submit"
-        className="add-item-modal__submit"
-        disabled={!name || !imageUrl || !weatherType}
-      >
-        Add Garment
-      </button>
+        <fieldset className="add-item-modal__radio-buttons">
+          <legend className="modal__legend">
+            Select the weather type:{" "}
+            <span className="modal__required-asterisk">*</span>
+          </legend>
+          <label className="modal__label model__label_type_radio">
+            <input
+              required
+              id="add-item-hot"
+              type="radio"
+              className="modal__radio-input"
+              name="weatherType"
+              value="hot"
+              onChange={handleWeatherTypeChange}
+              checked={weatherType === "hot"}
+            />
+            Hot
+          </label>
+          <label className="modal__label model__label_type_radio">
+            <input
+              id="add-item-warm"
+              type="radio"
+              className="modal__radio-input"
+              name="weatherType"
+              value="warm"
+              onChange={handleWeatherTypeChange}
+              checked={weatherType === "warm"}
+            />
+            Warm
+          </label>
+          <label className="modal__label model__label_type_radio">
+            <input
+              id="add-item-cold"
+              type="radio"
+              className="modal__radio-input"
+              name="weatherType"
+              value="cold"
+              onChange={handleWeatherTypeChange}
+              checked={weatherType === "cold"}
+            />
+            Cold
+          </label>
+        </fieldset>
+        <button
+          type="submit"
+          className="add-item-modal__submit"
+          disabled={!name || !imageUrl || !weatherType}
+        >
+          Add Garment
+        </button>
+      </div>
     </ModalWithForm>
   );
 }

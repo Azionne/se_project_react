@@ -70,7 +70,7 @@ export default function LoginModalForm({
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="login-email" className="modal__label">
+      <label className="modal__label">
         Email <span className="modal__required-asterisk">*</span>
         <input
           required
@@ -91,7 +91,7 @@ export default function LoginModalForm({
         )}
       </label>
 
-      <label htmlFor="login-password" className="modal__label">
+      <label className="modal__label">
         Password <span className="modal__required-asterisk">*</span>
         <input
           required

@@ -16,7 +16,10 @@ function DeleteItemModal({
 
   return (
     <div className={`modal ${isOpen && "modal_opened"}`} onClick={onClose}>
-      <div className="delete-modal__content" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="delete-modal__content"
+        onClick={(e) => e.stopPropagation()}
+      >
         <h2 className="delete-modal__text">
           Are you sure you want to delete this item?
           <br />

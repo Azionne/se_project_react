@@ -5,13 +5,23 @@ import React, { useContext } from "react";
 
 function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
   const currentUser = useContext(CurrentUserContext);
-  const isOwner = card && currentUser && card.owner === currentUser.id;
+  const isOwner =
+    card &&
+    currentUser &&
+    (card.owner === currentUser._id || card.owner === currentUser.id);
+
+  console.log("ItemModal - currentUser:", currentUser); // Debug log
+  console.log("ItemModal - card:", card); // Debug log
+  console.log("ItemModal - isOwner:", isOwner); // Debug log
 
   if (!card) return null;
 
   return activeModal === "preview" ? (
     <div className="modal modal_opened" onClick={onClose}>
-      <div className="modal__content modal__content_type_image" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="modal__content modal__content_type_image"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button className="modal__close" type="button" onClick={onClose}>
           <img src={closeIcon} alt="Close" />
         </button>
@@ -28,7 +38,10 @@ function ItemModal({ activeModal, onClose, card, onDeleteItem }) {
             {isOwner && (
               <button
                 className="modal__delete-button"
-                onClick={() => onDeleteItem(card)}
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent modal from closing
+                  onDeleteItem(card);
+                }}
               >
                 Delete item
               </button>

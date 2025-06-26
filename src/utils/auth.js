@@ -1,7 +1,7 @@
 import { handleServerResponse } from "./api.js";
 
 const BASE_URL = "http://localhost:3001";
-const USE_JSON_SERVER = false; // Should match the setting in api.js
+const USE_JSON_SERVER = true; // Should match the setting in api.js
 
 export const register = ({ name, avatar, email, password }) => {
   if (USE_JSON_SERVER) {

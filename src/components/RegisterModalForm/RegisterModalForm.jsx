@@ -107,7 +107,7 @@ export default function RegisterModalForm(props) {
       contentClassName="register-modal__content"
       formClassName="register-modal__form"
     >
-      <label htmlFor="register-email" className="modal__label">
+      <label className="modal__label">
         Email <span style={{ color: "red" }}>*</span>
         <input
           required
@@ -125,7 +125,7 @@ export default function RegisterModalForm(props) {
           </span>
         )}
       </label>
-      <label htmlFor="register-password" className="modal__label">
+      <label className="modal__label">
         Password <span style={{ color: "red" }}>*</span>
         <input
           required
@@ -143,7 +143,7 @@ export default function RegisterModalForm(props) {
           </span>
         )}
       </label>
-      <label htmlFor="register-name" className="modal__label">
+      <label className="modal__label">
         Name
         <input
           type="text"
@@ -155,7 +155,7 @@ export default function RegisterModalForm(props) {
           value={name}
         />
       </label>
-      <label htmlFor="register-avatar" className="modal__label">
+      <label className="modal__label">
         Avatar URL
         <input
           type="url"
