@@ -49,11 +49,15 @@ export default function EditProfileModal({
       onSubmit={handleSubmit}
       contentClassName="edit-profile-modal"
     >
-      <label className="modal__label edit-profile-modal__label">
+      <label
+        className="modal__label edit-profile-modal__label"
+        htmlFor="edit-profile-name"
+      >
         Name *
         <input
           type="text"
           className="modal__input edit-profile-modal__input"
+          id="edit-profile-name"
           value={name}
           onChange={(e) => {
             setName(e.target.value);
@@ -63,11 +67,15 @@ export default function EditProfileModal({
           maxLength={20}
         />
       </label>
-      <label className="modal__label edit-profile-modal__label">
+      <label
+        className="modal__label edit-profile-modal__label"
+        htmlFor="edit-profile-avatar"
+      >
         Avatar *
         <input
           type="url"
           className="modal__input edit-profile-modal__input"
+          id="edit-profile-avatar"
           value={avatar}
           onChange={(e) => {
             setAvatar(e.target.value);

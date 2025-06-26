@@ -107,13 +107,13 @@ export default function RegisterModalForm(props) {
       contentClassName="register-modal__content"
       formClassName="register-modal__form"
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="register-email" className="modal__label">
         Email <span style={{ color: "red" }}>*</span>
         <input
           required
           type="email"
           className="modal__input"
-          id="email"
+          id="register-email"
           name="email"
           placeholder="Email"
           onChange={handleChange}
@@ -125,13 +125,13 @@ export default function RegisterModalForm(props) {
           </span>
         )}
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="register-password" className="modal__label">
         Password <span style={{ color: "red" }}>*</span>
         <input
           required
           type="password"
           className="modal__input"
-          id="password"
+          id="register-password"
           name="password"
           placeholder="Password"
           onChange={handleChange}
@@ -143,24 +143,24 @@ export default function RegisterModalForm(props) {
           </span>
         )}
       </label>
-      <label htmlFor="name" className="modal__label">
+      <label htmlFor="register-name" className="modal__label">
         Name
         <input
           type="text"
           className="modal__input"
-          id="name"
+          id="register-name"
           name="name"
           placeholder="Name (optional)"
           onChange={handleChange}
           value={name}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label htmlFor="register-avatar" className="modal__label">
         Avatar URL
         <input
           type="url"
           className="modal__input"
-          id="avatar"
+          id="register-avatar"
           name="avatar"
           placeholder="Avatar URL (optional)"
           onChange={handleChange}

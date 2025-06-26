@@ -70,7 +70,7 @@ export default function LoginModalForm({
       onClose={onClose}
       onSubmit={handleSubmit}
     >
-      <label htmlFor="email" className="modal__label">
+      <label htmlFor="login-email" className="modal__label">
         Email <span className="modal__required-asterisk">*</span>
         <input
           required
@@ -78,7 +78,7 @@ export default function LoginModalForm({
           className={`modal__input modal__input_type_email${
             loginError ? " modal_error" : ""
           }`}
-          id="email"
+          id="login-email"
           name="email"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
@@ -91,13 +91,13 @@ export default function LoginModalForm({
         )}
       </label>
 
-      <label htmlFor="password" className="modal__label">
+      <label htmlFor="login-password" className="modal__label">
         Password <span className="modal__required-asterisk">*</span>
         <input
           required
           type="password"
           className="modal__input"
-          id="password"
+          id="login-password"
           name="password"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
