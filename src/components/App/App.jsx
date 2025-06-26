@@ -75,56 +75,23 @@ function App() {
   const handleAddClick = () => setActiveModal("add");
 
   const handleCardLike = ({ _id, isLiked }) => {
-    if (!_id) {
-      console.error("handleCardLike called with undefined _id");
-      return;
-    }
-
-    // Only allow liking if user is logged in
-    if (!currentUser) {
-      return;
-    }
-
     const token = localStorage.getItem("jwt");
-    const userId = currentUser._id;
 
-    // Find item by either _id or id field
-    const item = clothingItems.find(
-      (card) => card._id === _id || card.id === _id
-    );
-
-    if (!item) {
-      console.error("Item not found with id:", _id);
+    if (!token || !currentUser) {
+      // or handle not-logged-in case
       return;
     }
 
-    const currentLikes = item ? item.likes : [];
+    // Determine which API call to make
+    const apiCall = isLiked ? removeCardLike : addCardLike;
 
-    const apiMethod = isLiked
-      ? (_id, userId, token) => removeCardLike(_id, userId, token, currentLikes)
-      : (_id, userId, token) => addCardLike(_id, userId, token, currentLikes);
-
-    apiMethod(_id, userId, token)
-      .then((newCard) => {
-        console.log("API returned updated card:", newCard);
-        setClothingItems((oldCards) => {
-          const updated = oldCards.map((card) => {
-            // Match by either _id or id field
-            if (
-              card._id === _id ||
-              card.id === _id ||
-              card._id === newCard._id ||
-              card.id === newCard.id
-            ) {
-              return { ...card, ...newCard };
-            }
-            return card;
-          });
-          console.log("Updated clothingItems:", updated);
-          return updated;
-        });
+    apiCall(_id, currentUser._id, token)
+      .then((updatedCard) => {
+        setClothingItems((cards) =>
+          cards.map((card) => (card._id === _id ? updatedCard : card))
+        );
       })
-      .catch(console.error);
+      .catch((err) => console.error(err));
   };
 
   const handleEditProfile = ({ name, avatar }) => {
