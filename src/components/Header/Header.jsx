@@ -52,20 +52,16 @@ function Header({
 
         <div className="header__actions">
           {isLogged ? (
-            <div className="header__avatar-container">
-              <Link to="/profile" className="header__profile-link">
-                {currentUser?.avatar && (
-                  <img
-                    src={currentUser.avatar}
-                    alt="User avatar"
-                    className="header__avatar"
-                  />
-                )}
-                <span className="header__username">
-                  {currentUser?.name || "User"}
-                </span>
-              </Link>
-            </div>
+            <Link to="/profile" className="header__profile-link">
+              <span className="header__username">
+                {currentUser?.name || "User"}
+              </span>
+              <img
+                src={currentUser?.avatar || avatarImg}
+                alt="User avatar"
+                className="header__avatar"
+              />
+            </Link>
           ) : (
             !hideAuthButtons && (
               <div className="header__auth-buttons">
