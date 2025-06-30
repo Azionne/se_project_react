@@ -9,8 +9,8 @@ export default function ItemCard({ item, handleCardClick, handleCardLike }) {
   const currentUser = useContext(CurrentUserContext);
   const likes = Array.isArray(item.likes) ? item.likes : [];
 
-  // Only use user ID if user is actually logged in
-  const userId = currentUser?._id;
+  // Use either _id or id field from currentUser (Express backend uses 'id')
+  const userId = currentUser?._id || currentUser?.id;
 
   const isLiked =
     currentUser && Array.isArray(item.likes) && item.likes.includes(userId);

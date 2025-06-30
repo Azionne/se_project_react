@@ -117,11 +117,20 @@ function deleteItems(_id, token) {
 }
 
 function addCardLike(_id, userId, token, currentLikes = []) {
+  console.log("addCardLike called with:", {
+    _id,
+    userId,
+    token: !!token,
+    currentLikes,
+    baseUrl,
+  });
+
   if (USE_JSON_SERVER) {
     // For JSON server, update the item's likes array
     const newLikes = currentLikes.includes(userId)
       ? currentLikes
       : [...currentLikes, userId];
+
     // JSON server uses 'id' in the URL, but our items use '_id'
     const itemId = _id;
     return fetch(`${baseUrl}/items/${itemId}`, {
@@ -133,17 +142,35 @@ function addCardLike(_id, userId, token, currentLikes = []) {
     }).then(handleServerResponse);
   } else {
     // Express backend
+    console.log(
+      "Making Express backend call:",
+      `${baseUrl}/items/${_id}/likes`
+    );
     return fetch(`${baseUrl}/items/${_id}/likes`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    }).then(handleServerResponse);
+    })
+      .then(handleServerResponse)
+      .then((response) => {
+        // Express backend returns { data: item }, but we need just the item
+        console.log("Express addCardLike response:", response);
+        return response.data || response;
+      });
   }
 }
 
 function removeCardLike(_id, userId, token, currentLikes = []) {
+  console.log("removeCardLike called with:", {
+    _id,
+    userId,
+    token: !!token,
+    currentLikes,
+    baseUrl,
+  });
+
   if (USE_JSON_SERVER) {
     // For JSON server, update the item's likes array
     const newLikes = currentLikes.filter((id) => id !== userId);
@@ -158,13 +185,23 @@ function removeCardLike(_id, userId, token, currentLikes = []) {
     }).then(handleServerResponse);
   } else {
     // Express backend
+    console.log(
+      "Making Express backend DELETE call:",
+      `${baseUrl}/items/${_id}/likes`
+    );
     return fetch(`${baseUrl}/items/${_id}/likes`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    }).then(handleServerResponse);
+    })
+      .then(handleServerResponse)
+      .then((response) => {
+        // Express backend returns { data: item }, but we need just the item
+        console.log("Express removeCardLike response:", response);
+        return response.data || response;
+      });
   }
 }
 

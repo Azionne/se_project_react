@@ -78,20 +78,40 @@ function App() {
     const token = localStorage.getItem("jwt");
 
     if (!token || !currentUser) {
-      // or handle not-logged-in case
+      console.log("No token or currentUser for like action");
       return;
     }
 
+    // Find the current card to get its current likes
+    const currentCard = clothingItems.find((card) => card._id === _id);
+    const currentLikes = currentCard?.likes || [];
+
+    // Use either _id or id field from currentUser (Express backend uses 'id')
+    const userId = currentUser._id || currentUser.id;
+
+    console.log("handleCardLike called with:", {
+      _id,
+      isLiked,
+      currentUser: userId,
+      currentLikes,
+      currentCard,
+    });
+
     // Determine which API call to make
     const apiCall = isLiked ? removeCardLike : addCardLike;
+    const action = isLiked ? "removing like" : "adding like";
+    console.log(`${action} for item ${_id}`);
 
-    apiCall(_id, currentUser._id, token)
+    apiCall(_id, userId, token, currentLikes)
       .then((updatedCard) => {
         setClothingItems((cards) =>
           cards.map((card) => (card._id === _id ? updatedCard : card))
         );
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error("Like/unlike error:", err);
+        console.error("Full error details:", err.message || err);
+      });
   };
 
   const handleEditProfile = ({ name, avatar }) => {
@@ -243,10 +263,12 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
+    console.log("Token from localStorage:", token ? "exists" : "not found");
     if (token) {
       auth
         .checkToken(token)
         .then((userData) => {
+          console.log("Token validation successful, user data:", userData);
           setCurrentUser(userData);
           setIsLogged(true);
         })
@@ -258,6 +280,7 @@ function App() {
           setCurrentUser(null);
         });
     } else {
+      console.log("No token found, setting user to null");
       setIsLogged(false);
       setCurrentUser(null);
     }

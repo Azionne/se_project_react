@@ -40,6 +40,9 @@ export const login = ({ email, password }) => {
 };
 
 export const checkToken = (token) => {
+  console.log("checkToken called with token:", token ? "exists" : "missing");
+  console.log("USE_JSON_SERVER:", USE_JSON_SERVER);
+
   if (USE_JSON_SERVER) {
     // Mock token check for JSON server mode
     if (token === "mock-jwt-token") {
@@ -52,6 +55,8 @@ export const checkToken = (token) => {
       return Promise.reject("Invalid token");
     }
   }
+
+  console.log("Making checkToken request to:", `${BASE_URL}/users/me`);
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
     headers: {
