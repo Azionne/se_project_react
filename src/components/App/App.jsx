@@ -152,14 +152,8 @@ function App() {
           errorMessage = err.message;
         }
 
-        if (
-          errorMessage.includes("Email already exists") ||
-          errorMessage.includes("Email is already registered")
-        ) {
-          setRegistrationError(errorMessage);
-        } else {
-          setRegistrationError(errorMessage);
-        }
+        // Show the error in a more user-friendly way
+        setRegistrationError(errorMessage);
       })
       .finally(() => {
         setIsSaving(false);

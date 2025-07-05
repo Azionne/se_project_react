@@ -57,7 +57,7 @@ export default function AddItemModal({
       onSubmit={handleSubmit}
     >
       <div className="add-item-modal__wrapper">
-        <label className="modal__label">
+        <label className="namemodal__label">
           Name <span className="modal__required-asterisk">*</span>
           <input
             required

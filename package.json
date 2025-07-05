@@ -3,11 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://zeus-demo.jumpingcrab.com",
   "scripts": {
     "dev": "vite --open --port 3000",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "npm run build && scp -r ./dist/* a_vorrice@35.196.51.243:/home/a_vorrice/frontend",
     "json-server": "json-server --watch db.json --port 3003"
   },
   "dependencies": {

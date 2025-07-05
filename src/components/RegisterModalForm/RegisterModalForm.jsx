@@ -3,7 +3,14 @@ import "./RegisterModalForm.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 export default function RegisterModalForm(props) {
-  const { onClose, activeModal, isSaving, onRegister, switchToLogin } = props;
+  const {
+    onClose,
+    activeModal,
+    isSaving,
+    onRegister,
+    switchToLogin,
+    registrationError,
+  } = props;
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -107,6 +114,9 @@ export default function RegisterModalForm(props) {
       contentClassName="register-modal__content"
       formClassName="register-modal__form"
     >
+      {registrationError && (
+        <div className="modal__error-message">{registrationError}</div>
+      )}
       <label className="modal__label">
         Email <span style={{ color: "red" }}>*</span>
         <input

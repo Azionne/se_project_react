@@ -1,6 +1,6 @@
 import { handleServerResponse } from "./api.js";
 
-const BASE_URL = "http://localhost:3001";
+import { EXPRESS_BASE_URL } from "../utils/constants";
 const USE_JSON_SERVER = false; // Should match the setting in api.js
 
 export const register = ({ name, avatar, email, password }) => {
@@ -12,7 +12,7 @@ export const register = ({ name, avatar, email, password }) => {
     });
   }
 
-  return fetch(`${BASE_URL}/signup`, {
+  return fetch(`${EXPRESS_BASE_URL}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const login = ({ email, password }) => {
     });
   }
 
-  return fetch(`${BASE_URL}/signin`, {
+  return fetch(`${EXPRESS_BASE_URL}/signin`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -56,8 +56,8 @@ export const checkToken = (token) => {
     }
   }
 
-  console.log("Making checkToken request to:", `${BASE_URL}/users/me`);
-  return fetch(`${BASE_URL}/users/me`, {
+  console.log("Making checkToken request to:", `${EXPRESS_BASE_URL}/users/me`);
+  return fetch(`${EXPRESS_BASE_URL}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

@@ -115,3 +115,8 @@ export const coordinates = {
 };
 
 export const APIkey = "a55a98aaee04d0285bcba725026a08a1";
+
+export const EXPRESS_BASE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://api.zeus-demo.jumpingcrab.com"
+    : "http://localhost:3001";

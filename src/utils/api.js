@@ -1,5 +1,5 @@
 // Configuration for different backends
-const EXPRESS_BASE_URL = "http://localhost:3001"; // Express backend
+import { EXPRESS_BASE_URL } from "../utils/constants"; // Express backend
 const JSON_SERVER_BASE_URL = "http://localhost:3003"; // JSON server for testing
 
 // Set this to true to use JSON server, false to use Express backend
@@ -8,7 +8,30 @@ const USE_JSON_SERVER = false; // Change to true to test with db.json
 const baseUrl = USE_JSON_SERVER ? JSON_SERVER_BASE_URL : EXPRESS_BASE_URL;
 
 export const handleServerResponse = (res) => {
-  return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+  if (res.ok) {
+    return res.json();
+  } else {
+    // For 409 conflicts and other errors, try to get the error message from the response
+    return res
+      .json()
+      .then((err) => {
+        // If the server returned a message, use it
+        if (err && err.message) {
+          return Promise.reject(err.message);
+        }
+        // Otherwise, use a generic message with the status code
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch(() => {
+        // If we can't parse the JSON (or there's no JSON), use a status-based message
+        if (res.status === 409) {
+          return Promise.reject(
+            "Email already exists. Please use a different email address."
+          );
+        }
+        return Promise.reject(`Error: ${res.status}`);
+      });
+  }
 };
 
 function getItems(token) {

@@ -17,6 +17,10 @@
   z-index: 1000;
 }
 
+.modal_label {
+  margin-top: 20px;
+}
+
 .modal_opened {
   display: flex;
 }
